@@ -1,0 +1,28 @@
+.welcome-left__container {
+    max-width: 50vw;
+    height: 100vh;
+    padding: 0 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    row-gap: 20px;
+    background-color: #F5D82D;
+}
+
+.welcome-left__title {
+    margin: 0;
+    font-family: 'Involve';
+    font-weight: 400;
+    font-size: 80px;
+    text-align: left;
+    color: #03160E;
+}
+
+.welcome-left__description {
+    font-family: 'Involve';
+    font-weight: 400;
+    font-size: 30px;
+    text-align: left;
+    color: #03160E;
+}

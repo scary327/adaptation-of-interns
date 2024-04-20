@@ -1,0 +1,53 @@
+.black-button {
+    background-color: #101010;
+    border: none;
+    color: #ffffff;
+    font-family: 'Kanit Cyrillic';
+    font-weight: 400;
+    font-size: 40px;
+    padding: 25px 50px;
+    transition: transform 0.2s;
+}
+
+.black-button:hover {
+    transform: scale(1.1);
+}
+
+.black-button:active {
+    outline: 3px solid #ffffff;
+}
+
+.empty-button {
+    font-family: 'Kanit Cyrillic';
+    background: none;
+    border: none;
+    font-weight: 400;
+    font-size: 26px;
+    text-align: center;
+    color: #03160E;
+    transition: transform 0.2s;
+}
+
+.empty-button:hover {
+    transform: translateY(10px);
+    border-bottom: 3px solid #F5D82D;
+}
+
+.orange-button {
+    font-family: 'Kanit Cyrillic';
+    font-weight: 400;
+    font-size: 26px;
+    background-color: #F5D82D;
+    color: #03160E;
+    border: none;
+    padding: 20px 50px;
+    transition: transform 0.2s;
+}
+
+.orange-button:hover {
+    transform: scale(1.1);
+}
+
+.orange-button:active {
+    outline: 3px solid #03160E;
+}

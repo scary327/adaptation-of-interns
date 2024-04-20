@@ -1,0 +1,6 @@
+@import url(./welcome-left.css);
+@import url(./welcome-right.css);
+
+.welcome-page__top-container {
+    display: flex;
+}
