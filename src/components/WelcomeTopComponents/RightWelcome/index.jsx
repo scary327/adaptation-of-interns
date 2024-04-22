@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Button } from "../../Button";
 import { useSpring, animated } from "react-spring";
 
-export const RightWelcome = () => {
+export const RightWelcome = ({setOpenModal}) => {
 
     const fadeIn = useSpring({
         from: { opacity: 0, transform: 'translateY(-50px)' },
@@ -21,7 +21,7 @@ export const RightWelcome = () => {
             <animated.ul style={fadeIn} className="welcome-right__buttons-list">
                 <Button title={"Разработка"} color={"empty-button"} />
                 <Button title={"О проекте"} color={"empty-button"} />
-                <Button title={"Войти"} color={"orange-button"} />
+                <Button title={"Войти"} color={"orange-button"} onClick={() => setOpenModal(true)} />
             </animated.ul>
         </div>
     )
