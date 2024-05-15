@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+    width: 250px;
+    height: 400px;
+    background-color: #F5D82D;
+    color: #101010;
+    padding: 20px 10px;
+    box-shadow: inset 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: transform 0.2s ease-in;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.user_full_name {
+    font-family: 'Inter Regular';
+    font-size: 20px;
+    line-height: 150%;
+    border-bottom: 2px solid #101010;
+}
+
+.user_avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+}
+
+.user_description {
+    font-family: 'Inter Light';
+    font-size: 20px;
+    line-height: 150%;
+}

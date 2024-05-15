@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from 'react-router-dom';
 
 const LoginModalForm = (props) => {
 
     const { openModal, setOpenModal} = props;
+    const navigate = useNavigate();
 
     const {
         register,
@@ -10,7 +12,26 @@ const LoginModalForm = (props) => {
         formState: { errors }
     } = useForm();
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        let userRole = "intern";
+
+        if (data.email === "curator@example.com") {
+            userRole = "curator";
+        } else if (data.email === "admin@example.com") {
+            userRole = "admin";
+        }
+
+        localStorage.setItem("AccessToken", "12345");
+        localStorage.setItem("UserRole", userRole);
+
+        if (userRole === "intern") {
+            navigate("/intern-profile");
+        } else {
+            navigate(`/user-list`);
+        }
+
+        console.log(data);
+    };
 
     const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 

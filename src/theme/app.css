@@ -1,8 +1,9 @@
 @import url(./styles/loader.css);
-@import url(./styles/pages/welcome/welcome.css);
+@import url(./styles/pages/all-pages.css);
+@import url(./styles/containers/all-container.css);
+@import url(./styles/components/all-components.css);
 @import url(../../node_modules/normalize.css/normalize.css);
-@import url(./styles/components/buttons/buttons.css);
-@import url(./styles/containers/login-modal/login-modal.css);
+@import url(./styles/navigation/header-navigation.css);
 
 * {
     box-sizing: border-box;
@@ -21,6 +22,11 @@ ul {
     padding: 0;
 }
 
+p {
+    margin: 0;
+    padding: 0;
+}
+
 @font-face {
     font-family: 'Involve';
     src: url('./fonts/Involve-Regular.otf') format('opentype');
@@ -35,3 +41,23 @@ ul {
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Inter Bold';
+    src: url('./fonts/Inter-Bold.ttf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter Regular';
+    src: url('./fonts/Inter-Regular.ttf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter Light';
+    src: url('./fonts/Inter-Light.ttf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}

@@ -1,0 +1,86 @@
+.user-list__container {
+    display: flex;
+    width: 100vw;
+}
+
+.user-list__main-container {
+    padding: 22px;
+    width: 100vw;
+}
+
+.user-list__top-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-list__title {
+    margin: 0;
+    padding: 0;
+    font-family: 'Involve';
+    font-size: 50px;
+    color: #101010;
+}
+
+.user-list__admin-top-container {
+    display: flex;
+    column-gap: 80px;
+}
+
+.user-list__admin-btn {
+    font-family: 'Inter Bold';
+    font-size: 25px;
+    line-height: 120%;
+    background-color: #F5D82D;
+    color: #232323;
+    padding: 0 25px;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s;
+}
+
+.user-list__admin-btn:hover {
+    transform: scale(1.07);
+}
+
+.user-list__filter-container {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+    margin: 10px 30px;
+    height: 50px;
+}
+
+.user-list__filter-input {
+    background-image: url('src/theme/images/magnifying-glass.svg');
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding: 10px 0;
+    padding-left: 30px;
+    outline: none;
+    border: none;
+    border-bottom: 1.5px solid #555555;
+    font-family: 'Involve';
+    font-size: 20px;
+    color: #232323;
+}
+
+.user-list__filter-description {
+    font-family: 'Kanit Cyrillic';
+    font-size: 25px;
+    color: #232323;
+    text-align: center;
+    line-height: 120%;
+}
+
+.user-list__user-cards {
+    margin: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 70px;
+}
+
+.user-list__filter-role-container {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+}

@@ -1,0 +1,109 @@
+.background_container {
+    background-color: rgba(26, 26, 26, 0.75);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.close_btn {
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.top_container {
+    display: flex;
+    column-gap: 30px;
+    align-items: center;
+    padding: 50px 100px 20px 50px;
+    background-color: #F5D82D;
+}
+
+.user_avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+}
+
+.top_name__container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.top_name__descr_container {
+    display: flex;
+    column-gap: 30px;
+}
+
+.top_span {
+    white-space: nowrap;
+    font-family: 'Inter Regular';
+    font-size: 32px;
+    line-height: 120%;
+}
+
+.top_span_small {
+    white-space: nowrap;
+    font-family: 'Inter Regular';
+    font-size: 28px;
+    line-height: 120%;
+}
+
+.main_container {
+    padding: 20px 100px 20px 50px;
+    display: flex;
+}
+
+.main_left_container,
+.main_right_container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.main_text {
+    font-family: 'Inter Light';
+    font-size: 20px;
+    line-height: 120%;
+    background-color: #F5D82D;
+    color: #232323;
+    padding: 0 10px;
+}
+
+.main_span {
+    font-family: 'Kanit Cyrillic';
+    font-size: 20px;
+    line-height: 120%;
+    border-bottom: 2px solid #F5D82D;
+    padding-left: 10px;
+}
+
+.delete_btn {
+    align-self: flex-end;
+    background-image: url(src/theme/images/trash.svg);
+    background-repeat: no-repeat;
+    background-position: left center;
+    font-family: 'Kanit Cyrillic';
+    font-size: 25px;
+    line-height: 120%;
+    padding: 20px 20px 20px 40px;
+    color: #232323;
+    opacity: 0.67;
+}

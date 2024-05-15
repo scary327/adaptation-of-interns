@@ -1,0 +1,11 @@
+.ready_task_btn {
+    min-width: 400px;
+    font-family: 'Kanit Cyrillic';
+    font-size: 35px;
+    line-height: 120%;
+    padding: 30px 50px;
+    background-color: #F5D82D;
+    background-repeat: no-repeat;
+    background-image: url(src/theme/images/ready-task-background.svg);
+    background-position: right top;
+}
