@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './select-ready-task.module.css';
 import Modal from 'react-modal';
+import { TasksList } from '../TasksList';
 
 export const SelectReadyTask = () => {
 
@@ -32,6 +33,7 @@ export const SelectReadyTask = () => {
                     <div className={styles.modal_fixed_container}>
                         <p className={styles.modal_title}>Готовые задачи</p>
                         <input type='text' placeholder='поиск..' className={styles.modal_input} />
+                        <TasksList />
                     </div>
             </Modal>
         </>

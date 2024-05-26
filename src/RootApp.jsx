@@ -38,7 +38,7 @@ export default function RootApp() {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' exact element={<WelcomePage />}/>
-                    <Route path='/intern-profile' exact element={<RequireAuth><UserProfile /></RequireAuth>}/>
+                    <Route path='/user-profile' exact element={<RequireAuth><UserProfile /></RequireAuth>}/>
                     <Route path='/user-list' exact element={<RequireAuth><UserList /></RequireAuth>} />
                     <Route path='/constructor' exact element={<RequireAuth><Constructor/></RequireAuth>} />
                     <Route path='*' element={<Navigate to="/" />} />

@@ -5,7 +5,7 @@ import Modal from 'react-modal';
 
 export const NewTaskButtons = (props) => {
 
-    const { modalIsOpen, closeModal } = props;
+    const { modalIsOpen, closeModal} = props;
 
     return (
         <Modal 

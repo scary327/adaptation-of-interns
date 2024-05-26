@@ -1,0 +1,130 @@
+.container {
+    display: flex;
+}
+
+.main_container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    padding: 20px;
+}
+
+.main_p {
+    font-family: 'Involve';
+    font-size: 50px;
+    color: #101010;
+}
+
+.user_info__container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.user__avatar {
+    width: 200px;
+    height: 200px;
+}
+
+.edit_avatar__container {
+    position: relative;
+}
+
+.user__right_container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    align-items: center;
+}
+
+.button__avatar {
+    cursor: pointer;
+    user-select: none;
+    font-family: 'Inter Light', sans-serif;
+    font-size: 24px;
+    line-height: 120%;
+    color: rgba(35, 35, 35, 0.65);
+}
+
+.input_avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.user_form__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+}
+
+.user_role {
+    font-family: 'Inter Bold';
+    font-size: 25px;
+    line-height: 120%;
+    color: #101010;
+    border-bottom: 2px solid #F5D82D;
+}
+
+.user_role span {
+    font-family: 'Inter Bold';
+    font-size: 25px;
+    line-height: 120%;
+    color: #101010;
+}
+
+.save__button {
+    font-family: 'Kanit Cyrillic';
+    font-size: 25px;
+    line-height: 120%;
+    cursor: pointer;
+    user-select: none;
+    padding: 14px 50px;
+    color: #232323;
+    background-color: #DCDCDB;
+
+    &:hover {
+        outline: 2px solid #232323;
+    }
+
+    &:active {
+        background-color: #F8F8F8;
+    }
+}
+
+.change_password__button {
+    border: 2px solid #232323;
+    color: #232323;
+    padding: 5px 20px;
+    font-family: 'Kanit Cyrillic';
+    font-size: 20px;
+    line-height: 120%;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    &:active {
+        background-color: #DCDCDB;
+    }
+}
+
+.modal__change_pwd {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: #F9F9F9;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 20px 50px;
+    border-radius: 18px;
+}

@@ -20,16 +20,14 @@ export const Constructor = () => {
             name: 'сделать доклад',
             start: '2024-05-04',
             end: '2024-05-16',
-            progress: 10,
-            dependencies: '1'
+            progress: 10
         },
         {
             id: '3',
             name: 'алгоритм хаффмана',
             start: '2024-05-10',
             end: '2024-05-21',
-            progress: 0,
-            dependencies: '2'
+            progress: 0
         }
     ];
 
@@ -70,7 +68,7 @@ export const Constructor = () => {
                 </div>
             </div>
             {modalIsOpen && (
-                <NewTaskButtons modalIsOpen={modalIsOpen} closeModal={() => setModalIsOpen(false)} />
+                <NewTaskButtons tasksList={tasksList} modalIsOpen={modalIsOpen} closeModal={() => setModalIsOpen(false)} />
             )}
         </div>
     )
