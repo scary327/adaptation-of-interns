@@ -1,0 +1,77 @@
+.modal_container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: #F9F9F9;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 20px 50px;
+    outline: none;
+}
+
+.main_container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.main_title {
+    align-self: center;
+    font-family: 'Kanit Cyrillic';
+    font-size: 24px;
+    line-height: 120%;
+    border-bottom: 2px solid #F5D82D;
+    color: #232323;
+}
+
+.main_description {
+    font-family: 'Inter Regular';
+    font-size: 18px;
+    line-height: 120%;
+    color: #232323;
+}
+
+.main_date {
+    font-family: 'Involve';
+    font-size: 18px;
+    line-height: 120%;
+    color: #232323;
+}
+
+.main_date span {
+    border-bottom: 2px solid #F5D82D;
+    color: #232323;
+}
+
+.main_progress {
+    font-family: 'Involve';
+    font-size: 18px;
+    line-height: 120%;
+    color: #232323;
+}
+
+.main_progress span {
+    font-family: 'Inter Bold';
+    color: #232323;
+}
+
+.close_btn {
+    padding: 10px 30px;
+    background-color: #F5D82D;
+    align-self: center;
+    font-family: 'Inter Bold';
+    font-size: 20px;
+    color: #232323;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    &:active {
+        background-color: #cbb327;
+    }
+}

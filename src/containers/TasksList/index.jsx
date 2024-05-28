@@ -2,30 +2,24 @@ import styles from './tasks-list.module.css';
 
 export const TasksList = (props) => {
 
-    const tasksList = [
-        {
-            id: 1,
-            name: 'Задача 1'
-        },
-        {
-            id: 2,
-            name: 'Задача 2'
-        },
-        {
-            id: 3,
-            name: 'Задача 3'
-        },
-        {
-            id: 4,
-            name: 'Задача 4'
-        },
-    ]
+    const {planList, tasksList, setTasksList} = props;
+
+    const addTask = (task) => {
+        const newTask = {
+            id: tasksList.length + 1,
+            name: task.name,
+            start: new Date().toISOString().slice(0, 10),
+            end: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
+            progress: 0
+        };
+        setTasksList([...tasksList, newTask]);
+    }
 
     return (
         <div className={styles.container}>
-            {tasksList.map((task) => {
+            {planList.map((task) => {
                 return (
-                    <div key={task.id} className={styles.task_container}>
+                    <div key={task.id} onClick={() => addTask(task)} className={styles.task_container}>
                         {task.name}
                     </div>
                 )

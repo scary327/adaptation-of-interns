@@ -46,6 +46,11 @@
     }
 }
 
+.buttons_container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .new_task {
     max-width: 350px;
     padding: 10px 30px;
@@ -59,4 +64,26 @@
     user-select: none;
     color: #101010;
     border: 2px solid #101010;
+}
+
+.save_plan {
+    padding: 10px 30px;
+    font-family: 'Inter Bold';
+    font-size: 25px;
+    line-height: 120%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+    user-select: none;
+    background-color: #F5D82D;
+    color: #232323;
+
+    &:hover {
+        outline: 2px solid #232323;
+    }
+
+    &:active {
+        background-color: #bea722;
+    }
 }

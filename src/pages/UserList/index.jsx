@@ -4,6 +4,7 @@ import { HeaderContainer } from "../../app/Header/HeaderContainer";
 import { UserCard } from "../../containers/UserCard";
 import { FilterRole } from "../../components/FilterRoleElem";
 import { UserRightInfo } from "../../components/UserRightInfo";
+import { CreateNewUser } from "../../containers/CreateNewUser";
 
 export const UserList = () => {
     const { userInfo } = useContext(UserInfoContext);
@@ -21,7 +22,6 @@ export const UserList = () => {
             img: userInfo.img,
             role: userInfo.role,
             descriptionProfile: userInfo.descriptionProfile,
-            mentor: userInfo.mentor,
             vk: userInfo.vk,
             telegram: userInfo.telegram
         },
@@ -36,7 +36,7 @@ export const UserList = () => {
             descriptionProfile: 'Дизайнер',
             telegram: '@scary3270',
             vk: 'vk.ru/tiri-piri',
-            mentor: 2//id наставника
+            mentor: 0
         },
         {
             id: 2,
@@ -120,6 +120,8 @@ export const UserList = () => {
         return false;
     });
 
+    const [modalOpen, setOpenModal] = useState(false);
+
     return (
         <div className="user-list__container">
             <HeaderContainer />
@@ -128,7 +130,8 @@ export const UserList = () => {
                     { userInfo.role === 'Admin' ? (
                         <div className="user-list__admin-top-container">
                             <p className="user-list__title">Пользователи</p>
-                            <button className="user-list__admin-btn">Добавить</button>
+                            <button type="button" onClick={() => setOpenModal(true)} className="user-list__admin-btn">Добавить</button>
+                            <CreateNewUser modalOpen={modalOpen} closeModal={() => setOpenModal(false)} />
                         </div>
                     ) : (
                         <p className="user-list__title">Стажёры</p>
@@ -153,10 +156,10 @@ export const UserList = () => {
                 ) }
                 <div className="user-list__user-cards">
                     {userInfo.role === 'Admin' && filteredUsers.map((user) => (
-                        <UserCard userInfo={user} key={user.id} mentor={usersList.find((elem) => elem.id === user.mentor)} />
+                        <UserCard userInfo={user} key={user.id} />
                     ))}
                     {userInfo.role === 'Mentor' && internUsers.map((user) => (
-                        <UserCard userInfo={user} key={user.id} mentor={usersList.find((elem) => elem.id === user.mentor)} />
+                        <UserCard userInfo={user} key={user.id} />
                     ))}
                 </div>
             </div>

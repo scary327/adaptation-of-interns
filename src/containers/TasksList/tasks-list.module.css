@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    row-gap: 20px;
+    max-height: 300px;
+    width: 400px;
+    overflow: auto;
+}
+
+.task_container {
+    font-family: 'Kanit Cyrillic';
+    font-size: 24px;
+    width: 380px;
+    min-height: 70px;
+    max-height: 100px;
+    overflow: hidden;
+    padding: 20px;
+    color: #232323;
+    background-color: #F1F1F1;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+
+    &:hover {
+        outline: 2px solid #232323;
+    }
+}

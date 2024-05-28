@@ -6,8 +6,63 @@ export const UserCardModal = (props) => {
 
     const { roleDictionary } = useContext(UserInfoContext);
 
-    const { userInfo, closeModal, mentor } = props;
+    const { userInfo, closeModal } = props;
     const translatedRole = roleDictionary[userInfo.role];
+
+    const mentors = [
+        {
+            id: 0,
+            surname: 'Зверев',
+            name: 'Александр',
+            middleName: 'Владимирович',
+            email: 'cs-govno@yandex.ru',
+            img: '',
+            role: 'Mentor',
+            descriptionProfile: 'Бэкенд Разработчик',
+            telegram: '@scary3270',
+            vk: 'vk.ru/tiri-piri'
+        },
+        {
+            id: 1,
+            surname: 'Рябков',
+            name: 'Георгий',
+            middleName: 'Константинович',
+            email: 'lyublyu-dotu@yandex.ru',
+            img: '',
+            role: 'Mentor',
+            descriptionProfile: 'Фронтенд Разработчик',
+            telegram: '@scary3270',
+            vk: 'vk.ru/tiri-piri'
+        },
+        {
+            id: 2,
+            surname: 'Рябков',
+            name: 'Георгий',
+            middleName: 'Константинович',
+            email: 'lyublyu-dotu@yandex.ru',
+            img: '',
+            role: 'Mentor',
+            descriptionProfile: 'Фронтенд Разработчик',
+            telegram: '@scary3270',
+            vk: 'vk.ru/tiri-piri'
+        },
+        {
+            id: 3,
+            surname: 'Рябков',
+            name: 'Георгий',
+            middleName: 'Константинович',
+            email: 'lyublyu-dotu@yandex.ru',
+            img: '',
+            role: 'Mentor',
+            descriptionProfile: 'Фронтенд Разработчик',
+            telegram: '@scary3270',
+            vk: 'vk.ru/tiri-piri'
+        }
+        
+    ];
+
+    let currentMentorId = 0; // id уже закрепленного ментора
+    const internMentor = mentors.find((mentor) => mentor.id === currentMentorId ? mentor : null);
 
     return (
         <div className={styles.background_container}>
@@ -34,14 +89,31 @@ export const UserCardModal = (props) => {
                         <div className={styles.main_text}>
                             vk
                         </div>
-                        <div className={styles.main_text}>
-                            наставник
-                        </div>
+                        {userInfo.role === 'Intern' && 
+                            <div className={styles.main_text}>
+                                наставник
+                            </div>
+                        }
                     </div>
                     <div className={styles.main_right_container}>
                         <span className={styles.main_span}>{userInfo.telegram ? userInfo.telegram : 'Нет telegram'}</span>
                         <span className={styles.main_span}>{userInfo.vk ? userInfo.vk : 'Нет vk'}</span>
-                        <span className={styles.main_span}>{mentor}</span>
+                        { userInfo.role === 'Intern' &&
+                            <select defaultValue={'DEFAULT'} onChange={(value) => console.log(value)}>
+                                {internMentor ? (
+                                    <option key={internMentor.id} value={internMentor.id}>
+                                        {internMentor.surname} {internMentor.name} {internMentor.middleName}
+                                    </option>
+                                ) : (
+                                    <option value='DEFAULT' disabled selected>Выбор наставника</option>
+                                )}
+                                {mentors.map((mentor) => ( mentor.id !== currentMentorId ? 
+                                    <option value={mentor.id} key={mentor.id}>
+                                        {mentor.surname} {mentor.name} {mentor.middleName}
+                                    </option> : <></> 
+                                ))}
+                            </select>
+                        }
                     </div>
                 </div>
                 <button className={styles.delete_btn}>Удалить</button>

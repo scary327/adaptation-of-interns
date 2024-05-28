@@ -10,6 +10,13 @@ function FormCore() {
 
     return (
         <div className={styles.form_core}>
+            <input 
+                type='text'
+                placeholder='Название...'
+                {...register('name', {
+                    required: 'Это поле является обязательным!!!'
+                })}
+                className={styles.form_input}  />
             <textarea 
                 className={styles.form_textarea}
                 placeholder='Описание...'
@@ -48,8 +55,9 @@ function ButtonContainer(props) {
     )
 }
 
-export const CreateNewTask = () => {
+export const CreateNewTask = (props) => {
 
+    const { setTasksList, tasksList } = props;
     const methods = useForm();
 
     const [ modalIsOpen, setModalIsOpen ] = useState(false);
@@ -62,7 +70,16 @@ export const CreateNewTask = () => {
         setModalIsOpen(false);
     };
 
-    const onSubmit = (data) => {console.log(data);};
+    const onSubmit = (data) => {
+        const newTask = {
+            id: tasksList.length + 1,
+            name: data.name,
+            start: new Date().toISOString().slice(0, 10),
+            end: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
+            progress: 0
+        };
+        setTasksList([...tasksList, newTask]);
+    };
 
     return (
         <div>

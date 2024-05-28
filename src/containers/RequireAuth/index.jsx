@@ -1,17 +1,15 @@
-import { useContext } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
-import { UserInfoContext } from '../../RootApp';
+import { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import { UserInfoContext } from "../../RootApp";
 
-const RequireAuth = ({ children }) => {
+function RequireAuth({ children }) {
   const { userInfo } = useContext(UserInfoContext);
 
-  const location = useLocation();
-
-  if (userInfo.id) {
-    return <Navigate to='/' state={{ from: location}} />
+  if (!userInfo) {
+    return <Navigate to="/" />;
   }
 
   return children;
-};
+}
 
 export default RequireAuth;

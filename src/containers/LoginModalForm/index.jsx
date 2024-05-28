@@ -1,9 +1,13 @@
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
+import { UserInfoContext } from "../../RootApp";
 
 const LoginModalForm = (props) => {
 
     const { openModal, setOpenModal} = props;
+    const { userInfo, setUserInfo } = useContext(UserInfoContext);
+    const { server } = useContext(UserInfoContext);
     const navigate = useNavigate();
 
     const {
@@ -12,26 +16,25 @@ const LoginModalForm = (props) => {
         formState: { errors }
     } = useForm();
 
-    const onSubmit = (data) => {
-        let userRole = "intern";
+    async function onSubmit(data) {
+        await fetch(`${server}/auth/signin`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json;charset=utf-8' },
+            body: JSON.stringify({password: data.password, email: data.email})
+        }).then((data) => { 
+            if (!data.ok) {
+                throw new Error('http error')
+            }
+            data.json().then((data1) => {
+                localStorage.setItem('pepega', JSON.stringify(data1));
+                setUserInfo(data1);
+            });
+        });
+    }
 
-        if (data.email === "curator@example.com") {
-            userRole = "curator";
-        } else if (data.email === "admin@example.com") {
-            userRole = "admin";
-        }
-
-        localStorage.setItem("AccessToken", "12345");
-        localStorage.setItem("UserRole", userRole);
-
-        if (userRole === "intern") {
-            navigate("/intern-profile");
-        } else {
-            navigate(`/user-list`);
-        }
-
-        console.log(data);
-    };
+    useEffect(() => {
+        if (userInfo) navigate(`/user-profile`);
+    }, [userInfo]);
 
     const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 

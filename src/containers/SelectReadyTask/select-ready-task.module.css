@@ -9,3 +9,44 @@
     background-image: url(src/theme/images/ready-task-background.svg);
     background-position: right top;
 }
+
+.modal_container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: #F9F9F9;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 20px 50px;
+}
+
+.modal_fixed_container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.modal_title {
+    align-self: center;
+    font-family: 'Inter Bold';
+    color: #232323;
+    font-size: 24px;
+    border-bottom: 2px solid #F5D82D;
+}
+
+.modal_input {
+    background-image: url(src/theme/images/magnifying-glass.svg);
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-color: #F9F9F9;
+    padding: 6px 6px 6px 30px;
+    font-family: 'Kanit Cyrillic';
+    font-size: 20px;
+    outline: none;
+    border: none;
+    color: #232323;
+    border-bottom: 2px solid #232323;
+}

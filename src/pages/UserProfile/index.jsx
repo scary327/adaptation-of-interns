@@ -38,7 +38,7 @@ export const UserProfile = () => {
                         </div>
                         <div className={styles.user_form__container}>
                             <p className={styles.user_role}><span>Роль: </span>{userInfo.role}</p>
-                            <UserInfoContainer userInfo={userInfo} />
+                            <UserInfoContainer />
                             <button className={styles.save__button} type="submit">Сохранить</button>
                             <button className={styles.change_password__button} onClick={() => setChangePwd(true)} type="button" >Изменить пароль</button>
                         </div>

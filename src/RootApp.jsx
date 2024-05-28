@@ -4,7 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
 import { WelcomePage } from './pages/Welcome';
 import { UserList } from './pages/UserList';
 import { UserProfile } from './pages/UserProfile';
-import { createContext } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import RequireAuth from './containers/RequireAuth';
 import { Constructor } from './pages/Constructor';
 
@@ -12,20 +12,7 @@ export const UserInfoContext = createContext();
 
 export default function RootApp() {
 
-    //надо с бд получать
-    const userInfo = {
-        id: 0,
-        role: 'Admin',
-        name: 'Илья',
-        surname: 'Калугин',
-        middleName: 'Александрович',
-        email: 'lol-govno@yandex.ru',
-        descriptionProfile: 'Фронтенд разработчик',
-        img: '',
-        telegram: '@scary3270',
-        vk: 'vk.ru/tiri-piri',
-        mentor: ''
-    };
+    const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem('pepega')));
 
     const roleDictionary = {
         Admin: 'Админ',
@@ -33,8 +20,11 @@ export default function RootApp() {
         Intern: 'Стажёр'
     };
 
+    const server = 'http://localhost:5045/api';
+
+
     return (
-        <UserInfoContext.Provider value={{userInfo, roleDictionary}} >
+        <UserInfoContext.Provider value={{userInfo, setUserInfo, roleDictionary, server}}>
             <BrowserRouter>
                 <Routes>
                     <Route path='/' exact element={<WelcomePage />}/>

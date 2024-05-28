@@ -4,7 +4,7 @@ import styles from './user-card.module.css';
 
 export const UserCard = (props) => {
 
-    const { userInfo, mentor } = props;
+    const { userInfo } = props;
     const [ openModal, setOpenModal ] = useState(false);
 
     return (
@@ -22,8 +22,7 @@ export const UserCard = (props) => {
             </div>
             { openModal && (
                 <UserCardModal userInfo={userInfo} 
-                    closeModal={() => setOpenModal(false)} 
-                    mentor={mentor ? `${mentor.surname} ${mentor.name}` : 'нет наставника'} />
+                    closeModal={() => setOpenModal(false)} />
             )}
         </>
     )

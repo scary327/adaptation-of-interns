@@ -1,8 +1,10 @@
+import { useContext } from 'react';
 import styles from './user-info-container.module.css';
+import { UserInfoContext } from '../../RootApp';
 
-export const UserInfoContainer = (props) => {
+export const UserInfoContainer = () => {
 
-    const { userInfo } = props;
+    const { userInfo } = useContext(UserInfoContext);
 
     const parameterTranslator = {
         surname: 'фамилия',
