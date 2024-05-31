@@ -18,7 +18,7 @@ export const LeftWelcome = () => {
     return (
         <a.div style={fadeIn} className="welcome-left__container">
             <h1 className="welcome-left__title">Сервис для адаптации стажёров</h1>
-            <span className="welcome-left__description">Планирование задач, гант, канбан, скрам. Удобное отслеживание и&nbsp;распределние по&nbsp;проектам</span>
+            <span className="welcome-left__description">Планирование задач на диаграмме Ганта. Удобное отслеживание и&nbsp;распределние по&nbsp;проектам</span>
             <Button title={"Начать"} color={"black-button"} />
         </a.div>
     );

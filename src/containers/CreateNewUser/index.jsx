@@ -6,7 +6,7 @@ import { UserInfoContext } from '../../RootApp';
 
 export const CreateNewUser = (props) => {
 
-    const {modalOpen, closeModal} = props;
+    const {modalOpen, closeModal, userList, setUserList} = props;
     const { server } = useContext(UserInfoContext);
 
     const {
@@ -27,12 +27,13 @@ export const CreateNewUser = (props) => {
                 middleName: data.middleName,
                 role: data.role
             })
-        }).then((data) => {
-            if (!data.ok) {
+        }).then((response) => {
+            if (!response.ok) 
                 throw new Error('http error');
-            } else {
-                alert('Пользователь успешно создан');
-            }
+            return response.json() 
+        }).then((data) => {
+            alert('Пользователь успешно создан');
+            setUserList([...userList, data]);
         })
     }
 

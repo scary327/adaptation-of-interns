@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { HeaderContainer } from "../../app/Header/HeaderContainer";
 import { UserRightInfo } from "../../components/UserRightInfo";
 import styles from './constructor.module.css';
@@ -6,37 +6,12 @@ import { NewTaskButtons } from "../../components/newTaskButtons";
 import { FrappeGantt } from "frappe-gantt-react";
 import { ModalTask } from "../../containers/ModalTask";
 import { SavePlanContainer } from "../../containers/SavePlanContainer";
-
+import { UserInfoContext } from '../../RootApp';
+import { InstructionModal } from "../../components/InstructionModal";
 export const Constructor = () => {
-
-    // async function
-
-    const [tasksList, setTasksList] = useState([
-        {
-            id: '1',
-            name: 'закончить дизайн',
-            start: '2024-05-01',
-            end: '2024-05-10',
-            description: 'Описание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачи',
-            progress: 80
-        },
-        {
-            id: '2',
-            name: 'сделать доклад',
-            start: '2024-05-04',
-            end: '2024-05-16',
-            description: 'Описание задачи',
-            progress: 10
-        },
-        {
-            id: '3',
-            name: 'алгоритм хаффмана',
-            start: '2024-05-10',
-            end: '2024-05-21',
-            description: 'Описание задачи',
-            progress: 0
-        }
-    ]);
+    
+    const { server } = useContext(UserInfoContext);
+    const [tasksList, setTasksList] = useState([ { } ]);
 
     const [viewMode, setViewMode] = useState('Day');
     const viewModesList = [ 'Quarter Day', 'Half Day', 'Day', 'Week', 'Month' ];
@@ -51,24 +26,23 @@ export const Constructor = () => {
     }
 
     const changeDate = (task, newStart, newEnd) => {
-        setTasksList(prevTasksList => {
-            const updatedTask = { ...task, start: newStart, end: newEnd };
-            return prevTasksList.map(elem => elem.id === updatedTask.id ? updatedTask : elem);
-        });
+        const updatedTask = { ...task, start: new Date(newStart).toISOString().slice(0, 10), end: new Date(newEnd).toISOString().slice(0, 10) };
+        const newList = tasksList.map(elem => elem.id === updatedTask.id ? updatedTask : elem);
+        setTasksList(newList);
     };
 
     const changeProgress = (task, newProgress) => {
-        setTasksList(prevTasksList => {
-            const updatedTask = { ...task, progress: newProgress };
-            return prevTasksList.map(elem => elem.id === updatedTask.id ? updatedTask : elem);
-        });
+        const updatedTask = { ...task, progress: newProgress };
+        const newList = tasksList.map(elem => elem.id === updatedTask.id ? updatedTask : elem);
+        setTasksList(newList);
     };
 
-    const chageTasks = (tasks) => {
-        setTasksList(tasks);
-    }
+    useEffect(() => {
+        console.log(tasksList);
+    }, [tasksList]);
 
     const [ openModalPlan, setOpenModalPlan ] = useState(false);
+    const [ openInstructionModal, setOpenInstructionModal ] = useState(false);
 
     return (
         <div className={styles.container}>
@@ -80,6 +54,10 @@ export const Constructor = () => {
                     </div>
                     <UserRightInfo />
                 </div>
+                <button className={styles.instruction_btn} type='button' onClick={() => setOpenInstructionModal(true)}>Инструкция пользования конструктором</button>
+                <InstructionModal 
+                    openModal={openInstructionModal}
+                    closeModal={() => setOpenInstructionModal(false)} />
                 <div className={styles.gant_container}>
                     <FrappeGantt
                         tasks={tasksList}
@@ -87,7 +65,7 @@ export const Constructor = () => {
                         onClick={(task) => taskInfo(task)}
                         onDateChange={(task, start, end) => changeDate(task, start, end)}
                         onProgressChange={(task, progress) => changeProgress(task, progress)}
-                        onTasksChange={(tasks) => chageTasks(tasks)} />
+                        onTasksChange={(tasks) => console.log(tasks)} />
                     <ModalTask
                         task={selectedTask}
                         openModal={modalTask}
@@ -118,7 +96,10 @@ export const Constructor = () => {
                     closeModal={() => setModalIsOpen(false)} />
             )}
             {openModalPlan && (
-                <SavePlanContainer modalOpen={openModalPlan} closeModal={() => setOpenModalPlan(false)} />
+                <SavePlanContainer 
+                    modalOpen={openModalPlan} 
+                    closeModal={() => setOpenModalPlan(false)}
+                    tasksList={tasksList} />
             )}
         </div>
     )

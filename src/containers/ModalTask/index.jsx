@@ -1,9 +1,20 @@
 import styles from './modal-task.module.css';
 import Modal from 'react-modal';
+import { UserInfoContext } from '../../RootApp';
+import {useContext} from "react";
 
 export const ModalTask = (props) => {
 
-    const { task, openModal, closeModal } = props;
+    const { task, openModal, closeModal, setTasksList, tasksList } = props;
+    const { server } = useContext(UserInfoContext);
+    
+    const deleteTask = () => {
+        fetch(`${server}/internship/task/${task.id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json;charset=utf-8' },
+        });
+        setTasksList(tasksList.filter(elem => elem.id !== task.id));
+    }
 
     return (
         task &&
@@ -25,6 +36,12 @@ export const ModalTask = (props) => {
                         <p className={styles.main_date}>Дата начала: <span>{task.start}</span></p>
                         <p className={styles.main_date}>Дата конца: <span>{task.end}</span></p>
                         <p className={styles.main_progress}>Прогресс: <span>{task.progress}%</span></p>
+                        <button 
+                            className={styles.delete_btn}
+                            type='button'
+                            onClick={() => deleteTask()} >
+                            Удалить
+                        </button>
                         <button 
                             type='button' 
                             onClick={closeModal}

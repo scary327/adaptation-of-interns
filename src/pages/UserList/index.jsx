@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserInfoContext } from '../../RootApp';
 import { HeaderContainer } from "../../app/Header/HeaderContainer";
 import { UserCard } from "../../containers/UserCard";
@@ -11,71 +11,64 @@ export const UserList = () => {
 
     const [ filterRole, setFilterRole ] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
+    const [userList, setUserList] = useState([]); 
+    const { server } = useContext(UserInfoContext);
 
-    const usersList = [
-        {
-            id: userInfo.id,
-            surname: userInfo.surname,
-            name: userInfo.name,
-            middleName: userInfo.middleName,
-            email: userInfo.email,
-            img: userInfo.img,
-            role: userInfo.role,
-            descriptionProfile: userInfo.descriptionProfile,
-            vk: userInfo.vk,
-            telegram: userInfo.telegram
-        },
-        {
-            id: 1,
-            surname: 'Новиков',
-            name: 'Антон',
-            middleName: 'Романович',
-            email: 'dota-govno@yandex.ru',
-            img: '',
-            role: 'Intern',
-            descriptionProfile: 'Дизайнер',
-            telegram: '@scary3270',
-            vk: 'vk.ru/tiri-piri',
-            mentor: 0
-        },
-        {
-            id: 2,
-            surname: 'Зверев',
-            name: 'Александр',
-            middleName: 'Владимирович',
-            email: 'cs-govno@yandex.ru',
-            img: '',
-            role: 'Mentor',
-            descriptionProfile: 'Бэкенд Разработчик',
-            telegram: '@scary3270',
-            vk: 'vk.ru/tiri-piri',
-            mentor: ''
-        },
-        {
-            id: 3,
-            surname: 'Рябков',
-            name: 'Георгий',
-            middleName: 'Константинович',
-            email: 'lyublyu-dotu@yandex.ru',
-            img: '',
-            role: 'Mentor',
-            descriptionProfile: 'Фронтенд Разработчик',
-            telegram: '@scary3270',
-            vk: 'vk.ru/tiri-piri',
-            mentor: ''
-        },
-        {
-            id: 4,
-            surname: 'Иванов',
-            name: 'Иван',
-            middleName: 'Иванович',
-            email: 'lol-huynya@yandex.ru',
-            descriptionProfile: '',
-            telegram: '',
-            vk: '',
-            role: 'Admin'
-        }
-    ];
+    useEffect(() => {
+        const fetchUsers = async () => {
+            if (userInfo.role === "Admin") {
+                try {
+                    const response = await fetch(`${server}/user`, {
+                        method: 'GET',
+                        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+                    });
+    
+                    if (!response.ok) {
+                        throw new Error('HTTP error');
+                    }
+    
+                    const data = await response.json();
+                    setUserList(data);
+                } catch (error) {
+                    console.error('Error fetching users:', error);
+                }
+            }
+            if (userInfo.role === "Mentor") {
+                try {
+                    const response = await fetch(`${server}/internship/mentorIntern/mentor/${userInfo.id}/users`, {
+                        method: 'GET',
+                        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+                    });
+    
+                    if (!response.ok) {
+                        throw new Error('HTTP error');
+                    }
+    
+                    const data = await response.json();
+                    setUserList(data);
+                } catch (error) {
+                    console.error('Error fetching users:', error);
+                }
+            }
+                
+        };
+    
+        fetchUsers();
+    }, []);
+        
+    // const usersList = [
+    //     {
+    //         id: userInfo.id,
+    //         surname: userInfo.surname,
+    //         name: userInfo.name,
+    //         middleName: userInfo.middleName,
+    //         email: userInfo.email,
+    //         img: userInfo.img,
+    //         role: userInfo.role,
+    //         descriptionProfile: userInfo.descriptionProfile,
+    //         vk: userInfo.vk,
+    //         telegram: userInfo.telegram
+    //     },
 
     const filterList = [
         {
@@ -100,7 +93,7 @@ export const UserList = () => {
         }
     ]
 
-    const filteredUsers = usersList.filter((user) => {
+    const filteredUsers = userList.filter((user) => {
         if (filterRole && user.role.toLowerCase()!== filterRole.toLowerCase()) {
             return false;
         }
@@ -110,14 +103,6 @@ export const UserList = () => {
         }
 
         return true;
-    });
-    
-    const internUsers = usersList.filter((user) => {
-        if (user.role === 'Intern' && user.mentor === userInfo.id) {
-            return true
-        }
-
-        return false;
     });
 
     const [modalOpen, setOpenModal] = useState(false);
@@ -131,7 +116,7 @@ export const UserList = () => {
                         <div className="user-list__admin-top-container">
                             <p className="user-list__title">Пользователи</p>
                             <button type="button" onClick={() => setOpenModal(true)} className="user-list__admin-btn">Добавить</button>
-                            <CreateNewUser modalOpen={modalOpen} closeModal={() => setOpenModal(false)} />
+                            <CreateNewUser userList={userList} setUserList={setUserList}  modalOpen={modalOpen} closeModal={() => setOpenModal(false)} />
                         </div>
                     ) : (
                         <p className="user-list__title">Стажёры</p>
@@ -158,7 +143,7 @@ export const UserList = () => {
                     {userInfo.role === 'Admin' && filteredUsers.map((user) => (
                         <UserCard userInfo={user} key={user.id} />
                     ))}
-                    {userInfo.role === 'Mentor' && internUsers.map((user) => (
+                    {userInfo.role === 'Mentor' && userList.map((user) => (
                         <UserCard userInfo={user} key={user.id} />
                     ))}
                 </div>

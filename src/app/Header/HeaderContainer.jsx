@@ -34,7 +34,7 @@ export const HeaderContainer = () => {
             id: 2,
             name: 'Конструктор',
             icon: 'src/theme/images/constructor',
-            page: 'constructor'
+            page: `constructor`
         }
     ];
 
@@ -49,7 +49,7 @@ export const HeaderContainer = () => {
             id: 2,
             name: 'Конструктор',
             icon: 'src/theme/images/constructor',
-            page: 'constructor'
+            page: `constructor`
         }
     ];
 
@@ -58,7 +58,7 @@ export const HeaderContainer = () => {
             id: 1,
             name: 'Гант',
             icon: 'src/theme/images/constructor',
-            page: 'constructor'
+            page: `gantt/${userInfo.id}`
         }
     ];
 

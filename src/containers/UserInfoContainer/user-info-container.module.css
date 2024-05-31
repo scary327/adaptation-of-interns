@@ -26,6 +26,13 @@
         margin-bottom: 2px;
         outline: 2px solid #101010;
     }
+
+    &:disabled {
+        border-bottom: none;
+        outline: 2px dashed #3a3a3a;
+        color: #3a3a3a;
+        background-color: #bcbcbc;
+    }
 }
 
 .input_description {

@@ -106,4 +106,42 @@
     padding: 20px 20px 20px 40px;
     color: #232323;
     opacity: 0.67;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+        outline: 2px solid #232323;
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+.main_link {
+    justify-self: flex-end;
+    margin-left: auto;
+    align-self: center;
+    font-family: 'Kanit Cyrillic';
+    font-size: 20px;
+    text-decoration: none;
+    border-bottom: 2px solid #232323;
+    color: #232323;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+        border-bottom: 2px solid #F5D82D;
+    }
+
+    &:active {
+        transform: translateY(10px);
+    }
+}
+
+.custom_select {
+    font-size: 20px;
+    line-height: 120%;
+    font-family: 'Kanit Cyrillic';
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #F5D82D;
 }

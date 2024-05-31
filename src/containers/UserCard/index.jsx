@@ -21,7 +21,7 @@ export const UserCard = (props) => {
                 </div>
             </div>
             { openModal && (
-                <UserCardModal userInfo={userInfo} 
+                <UserCardModal cardUser={userInfo} 
                     closeModal={() => setOpenModal(false)} />
             )}
         </>

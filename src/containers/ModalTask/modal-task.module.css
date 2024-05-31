@@ -64,6 +64,7 @@
     align-self: center;
     font-family: 'Inter Bold';
     font-size: 20px;
+    line-height: 120%;
     color: #232323;
     transition: transform 0.2s ease-in-out;
 
@@ -73,5 +74,25 @@
 
     &:active {
         background-color: #cbb327;
+    }
+}
+
+.delete_btn {
+    padding: 10px 30px;
+    color: #4d4d4d;
+    outline: 2px solid #4d4d4d;
+    font-family: 'Kanit Cyrillic';
+    font-size: 20px;
+    line-height: 120%;
+    transition: transform 0.2s ease-in-out;
+    align-self: center;
+
+    &:hover {
+        color: #c4302b;
+        outline-color: #c4302b;
+    }
+
+    &:active {
+        transform: scale(1.05);
     }
 }

@@ -2,15 +2,16 @@ import { useContext } from 'react';
 import styles from './user-info-container.module.css';
 import { UserInfoContext } from '../../RootApp';
 
-export const UserInfoContainer = () => {
+export const UserInfoContainer = (props) => {
 
     const { userInfo } = useContext(UserInfoContext);
+    const { register } = props;
 
     const parameterTranslator = {
         surname: 'фамилия',
         name: 'имя',
         middleName: 'отчество',
-        descriptionProfile: 'роль в команде',
+        desciptionProfile: 'роль в команде',
         mentor: 'наставник',
         vk: 'vk',
         telegram: 'telegram'
@@ -22,7 +23,8 @@ export const UserInfoContainer = () => {
                 <input
                     type='email'
                     className={styles.user_info__input}
-                    defaultValue={userInfo.email} />
+                    defaultValue={userInfo.email}
+                    disabled />
                 <div className={styles.input_description}>почта</div>
             </div>
             {Object.entries(userInfo).map(([key, value]) => {
@@ -32,7 +34,8 @@ export const UserInfoContainer = () => {
                             <input
                                 type='text'
                                 className={styles.user_info__input}
-                                defaultValue={value} />
+                                defaultValue={value}
+                                {...register(`${key}`)} />
                             <div className={styles.input_description}>{parameterTranslator[key]}</div>
                         </div>
                     )

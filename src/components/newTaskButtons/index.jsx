@@ -5,7 +5,7 @@ import Modal from 'react-modal';
 
 export const NewTaskButtons = (props) => {
 
-    const { modalIsOpen, closeModal, setTasksList, tasksList} = props;
+    const { modalIsOpen, closeModal, setTasksList, tasksList, internId} = props;
 
     return (
         <Modal 
@@ -20,8 +20,8 @@ export const NewTaskButtons = (props) => {
                     backgroundColor: 'rgba(26, 26, 26, 0.75)'
                 }
             }} >
-                <CreateNewTask setTasksList={setTasksList} tasksList={tasksList} />
-                <SelectReadyTask setTasksList={setTasksList} tasksList={tasksList} />
+                <CreateNewTask setTasksList={setTasksList} tasksList={tasksList} internId={internId}/>
+                <SelectReadyTask setTasksList={setTasksList} tasksList={tasksList} internId={internId}/>
         </Modal>
     );
 }

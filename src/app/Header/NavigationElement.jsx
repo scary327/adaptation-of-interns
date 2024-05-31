@@ -6,7 +6,6 @@ export const NavigationElement = (props) => {
 
     const navigate = useNavigate();
 
-
     return isCurrentPage ? (
             <li className="navigation-elem__container navigation-elem__page-open">
                 <img src={`${data.icon}-orange.svg`} alt={`${data.name} icon`} className="navigation-elem__icon" />

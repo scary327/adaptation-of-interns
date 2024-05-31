@@ -4,9 +4,11 @@ import { BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
 import { WelcomePage } from './pages/Welcome';
 import { UserList } from './pages/UserList';
 import { UserProfile } from './pages/UserProfile';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 import RequireAuth from './containers/RequireAuth';
 import { Constructor } from './pages/Constructor';
+import { PageLoader } from './components/PageLoader';
+import { Gant } from './pages/Gant';
 
 export const UserInfoContext = createContext();
 
@@ -27,10 +29,21 @@ export default function RootApp() {
         <UserInfoContext.Provider value={{userInfo, setUserInfo, roleDictionary, server}}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' exact element={<WelcomePage />}/>
-                    <Route path='/user-profile' exact element={<RequireAuth><UserProfile /></RequireAuth>}/>
-                    <Route path='/user-list' exact element={<RequireAuth><UserList /></RequireAuth>} />
-                    <Route path='/constructor' exact element={<RequireAuth><Constructor/></RequireAuth>} />
+                    <Route path='/' exact 
+                        element={<WelcomePage />} 
+                        loader={<PageLoader />}/>
+                    <Route path='/user-profile' exact 
+                        element={<RequireAuth><UserProfile /></RequireAuth>}
+                        loader={<PageLoader />} />
+                    <Route path='/user-list' exact 
+                        element={<RequireAuth><UserList /></RequireAuth>}
+                        loader={<PageLoader />} />
+                    <Route path='/constructor' exact 
+                        element={<RequireAuth><Constructor /></RequireAuth>}
+                        loader={<PageLoader />} />
+                    <Route path='/gantt/:userId' exact 
+                        element={<RequireAuth><Gant  /></RequireAuth>}
+                        loader={<PageLoader />} />
                     <Route path='*' element={<Navigate to="/" />} />
                 </Routes>
             </BrowserRouter>

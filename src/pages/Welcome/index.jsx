@@ -1,5 +1,4 @@
-import { React, useState } from 'react';
-// import { PageLoader } from '../../components/PageLoader/index.jsx';
+import { useState } from 'react';
 import { LeftWelcome } from '../../components/WelcomeTopComponents/LeftWelcome/index.jsx';
 import { RightWelcome } from '../../components/WelcomeTopComponents/RightWelcome/index.jsx';
 import LoginModalForm from '../../containers/LoginModalForm/index.jsx';
