@@ -11,5 +11,13 @@ export default defineConfig({
   server: {
     port: 80,
     host: true
-  }
+  },
+  optimizeDeps: {
+    include: ['frappe-gantt-react'],
+  },
+  build: {
+    rollupOptions: {
+      external: ['frappe-gantt-react/dist/frappe-gantt.cjs.js'],
+    },
+  },
 })
