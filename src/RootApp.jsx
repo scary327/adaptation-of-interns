@@ -22,8 +22,7 @@ export default function RootApp() {
         Intern: 'Стажёр'
     };
 
-    const server = 'http://localhost:5045/api';
-
+    const server = 'http://95.163.223.71:5045/api';
 
     return (
         <UserInfoContext.Provider value={{userInfo, setUserInfo, roleDictionary, server}}>
