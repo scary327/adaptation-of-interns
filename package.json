@@ -20,8 +20,7 @@
     "react-redux": "^9.1.1",
     "react-router-dom": "^6.22.3",
     "react-spring": "^9.7.3",
-    "rollup": "^3.0.0", 
-    "@rollup/rollup-linux-x64-gnu": "latest"
+    "rollup": "^3.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

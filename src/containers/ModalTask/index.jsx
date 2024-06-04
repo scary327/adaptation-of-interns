@@ -13,7 +13,11 @@ export const ModalTask = (props) => {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
         });
-        setTasksList(tasksList.filter(elem => elem.id !== task.id));
+        if (tasksList.length === 1) {
+            setTasksList([{}]);
+        } else {
+            setTasksList(tasksList.filter(elem => elem.id !== task.id));
+        }
     }
 
     return (

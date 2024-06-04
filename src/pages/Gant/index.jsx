@@ -101,8 +101,13 @@ export const Gant = () => {
     const [ modalButtons, setModalButtons ] = useState(false);
     const [ modalPlan, setModalPlan ] = useState(false);
 
+    const formatDate = (date) => {
+        const pad = (number) => (number < 10 ? '0' : '') + number;
+        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+    };
+
     const changeDate = (task, newStart, newEnd) => {
-        const updatedTask = { ...task, start: new Date(newStart).toISOString().slice(0, 10), end: new Date(newEnd).toISOString().slice(0, 10) };
+        const updatedTask = { ...task, start: formatDate(new Date(newStart)), end: formatDate(new Date(newEnd)) };
         const newList = tasksList.map(elem => elem.id === updatedTask.id ? updatedTask : elem);
         setTasksList(newList);
     };

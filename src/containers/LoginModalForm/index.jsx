@@ -21,9 +21,12 @@ const LoginModalForm = (props) => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
             body: JSON.stringify({password: data.password, email: data.email})
-        }).then((data) => { 
+        }).then((data) => {
             if (!data.ok) {
-                throw new Error('http error')
+                data.text().then(error => {
+                    alert(error);
+                })
+                throw new Error('sign in error');
             }
             data.json().then((data1) => {
                 localStorage.setItem('pepega', JSON.stringify(data1));
@@ -51,19 +54,35 @@ const LoginModalForm = (props) => {
                             <input
                                 id="email"
                                 type="text"
-                                {...register("email", {required: true, pattern: emailPattern})} 
+                                {...register("email", {
+                                    required: 'Это поле является обязательным', 
+                                    pattern: {
+                                        value: emailPattern,
+                                        message: "Неправильный формат электронной почты"
+                                    }
+                                })} 
                                 placeholder="Электронная почта"
                                 className="login-modal__form-input"
                                 />
-                            {errors.email && <span className="login-modal__error-span">This field is required and should be a valid email format</span>}
+                            {errors.email && <span className="login-modal__error-span">{errors.email.message}</span>}
                             <input 
                                 id="password"
                                 type="password"
-                                {...register("password", {required: true})}
+                                {...register("password", {
+                                    required: 'Это поле является обязательным!',
+                                    minLength: {
+                                        value: 8,
+                                        message: 'Минимальная длинна пароля - 8 символов(обязательно хотя бы одна цифра)'
+                                    },
+                                    maxLength: {
+                                        value: 15,
+                                        message: 'Максимальная длинна пароля - 15 символов'
+                                    }
+                                })}
                                 placeholder="Пароль"
                                 className="login-modal__form-input"
                                 />
-                            {errors.password && <span className="login-modal__error-span">This field is required</span>}
+                                {errors.password && <span className="login-modal__error-span">{errors.password.message}</span>}
                             <button className="login-modal__submit-btn" type="submit">Войти в аккаунт</button>
                         </form>
                     </div>

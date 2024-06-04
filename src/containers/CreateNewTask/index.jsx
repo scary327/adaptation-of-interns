@@ -76,113 +76,63 @@ export const CreateNewTask = (props) => {
     const closeModal = () => {
         setModalIsOpen(false);
     };
+    
+    const createTask = async (url, taskToSend) => {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json;charset=utf-8' },
+            body: JSON.stringify(taskToSend)
+        });
+        if (!response.ok) throw new Error("Post error");
+        return response.json();
+    };
+    
+    const formatDate = (date) => {
+        const pad = (number) => (number < 10 ? '0' : '') + number;
+        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+    };
 
-    const onSubmit = (data) => {
-        if (currentPage == "gantt") {
+    const formatTask = (data, reusable = false) => ({
+        id: data.id || data.name,
+        name: data.title || data.name,
+        start: formatDate(new Date()),
+        end: formatDate(new Date(Date.now() + 5 * 24 * 60 * 60 * 1000)),
+        reusable,
+        progress: 0,
+        description: data.description
+    });
+
+    const onSubmit = async (data) => {
+        let newTask = {};
+        const commonTaskData = {
+            title: data.name,
+            description: data.description
+        };
+    
+        if (data.pattern) {
+            const taskToSend = { ...commonTaskData, mentorId: userInfo.id, reusable: true };
+            const receiveData = await createTask(`${server}/pattern/task`, taskToSend);
+            newTask = formatTask(receiveData, true);
+        } else if (currentPage === "gantt") {
             const taskToSend = {
+                ...commonTaskData,
                 internId: internId,
-                title: data.name,
-                description: data.description,
                 startDate: new Date(),
                 endDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
                 competitionDate: new Date(),
                 authorId: userInfo.id,
                 mentorReview: "",
                 progress: 0
-            }
-            fetch(`${server}/internship/task`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json;charset=utf-8' },
-                body: JSON.stringify(taskToSend)
-            }).then((response) => {
-                if (!response.ok) 
-                    throw new Error("Post error")
-                return response.json()
-            }).then((data) => {
-                const newTask = {
-                    id: data.id,
-                    name: data.title,
-                    start: new Date().toISOString().slice(0, 10),
-                    end: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
-                    progress: 0,
-                    description: data.description
-                };
-                setTasksList([...tasksList, newTask]);
-            })
-            if (data.pattern) 
-            {
-                const taskToSend = {
-                   mentorId: userInfo.id,
-                   title: data.name,
-                   description: data.description,
-                   reusable: true
-                }
-                fetch(`${server}/pattern/task`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json;charset=utf-8' },
-                    body: JSON.stringify(taskToSend)
-                }).then((response) => {
-                    if (!response.ok) 
-                        throw new Error("Post error")
-                    return response.json()
-                }).then((receiveData) => {
-                    const newTask = {
-                        id: receiveData.id,
-                        name: receiveData.title,
-                        start: new Date().toISOString().slice(0, 10),
-                        end: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
-                        reusable: true,
-                        progress: 0,
-                        description: receiveData.description
-                    };
-                    const newList = JSON.stringify(tasksList[0]) !== '{}' ? [...tasksList, newTask] : [ newTask ]; 
-                    setTasksList(newList);
-            })
+            };
+            const data = await createTask(`${server}/internship/task`, taskToSend);
+            newTask = formatTask(data);
+        } else if (currentPage === "constructor") {
+            newTask = formatTask({ ...commonTaskData, id: data.name }, false);
         }
-
-        } else if (currentPage == "constructor") {
-            if (!data.pattern) {
-                const newTask = {
-                    id: data.name,
-                    name: data.name,
-                    start: new Date().toISOString().slice(0, 10),
-                    end: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
-                    reusable: false,
-                    progress: 0,
-                    description: data.description
-                };
-                const newList = JSON.stringify(tasksList[0]) !== '{}' ? [...tasksList, newTask] : [ newTask ]; 
-                setTasksList(newList);
-            } else {
-                const taskToSend = {
-                   mentorId: userInfo.id,
-                   title: data.name,
-                   description: data.description,
-                   reusable: true
-                }
-                fetch(`${server}/pattern/task`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json;charset=utf-8' },
-                    body: JSON.stringify(taskToSend)
-                }).then((response) => {
-                    if (!response.ok) 
-                        throw new Error("Post error")
-                    return response.json()
-                }).then((receiveData) => {
-                    const newTask = {
-                        id: receiveData.id,
-                        name: receiveData.title,
-                        start: new Date().toISOString().slice(0, 10),
-                        end: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
-                        reusable: true,
-                        progress: 0,
-                        description: receiveData.description
-                    };
-                    const newList = JSON.stringify(tasksList[0]) !== '{}' ? [...tasksList, newTask] : [ newTask ]; 
-                    setTasksList(newList);
-            })
-        }
-    }};
+    
+        const newList = JSON.stringify(tasksList[0]) !== '{}' ? [...tasksList, newTask] : [newTask];
+        setTasksList(newList);
+    };
 
    
 
