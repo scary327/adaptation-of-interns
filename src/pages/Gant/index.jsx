@@ -146,9 +146,7 @@ export const Gant = () => {
                         <img src={ImagePlus} alt='plus-img' 
                             className={styles.plus_img} />
                     </button>
-                    {userInfo.role === 'Admin' || userInfo.role === 'Mentor' &&
-                        <button className={styles.upload_plan_button} onClick={() => setModalPlan(true)} >Загрузить план</button>
-                    }
+                    <button className={styles.upload_plan_button} onClick={() => setModalPlan(true)} >Загрузить план</button>
                     <button className={styles.update_button} onClick={() => saveNewTasks()}>
                         <span>Обновить</span>
                         <img src={ImageUpdate} alt="update-img" className={styles.update_svg} />
