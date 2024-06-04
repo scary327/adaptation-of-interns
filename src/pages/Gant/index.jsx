@@ -16,16 +16,14 @@ export const Gant = () => {
     const internId = params.userId;
     const { server, userInfo } = useContext(UserInfoContext);
 
-    // { tittle: pepega, tasks: [ {} {} {}]}
-    // id: '1',
-    // name: 'закончить дизайн',
-    // start: '2024-05-01',
-    // end: '2024-05-10',
-    // description: 'Описание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачиОписание задачи',
-    // progress: 80
-
     const [tasksList, setTasksList] = useState([ { } ]);
     const [intern, setIntern] = useState(null);
+    
+    const formatDate = (date) => {
+        const pad = (number) => (number < 10 ? '0' : '') + number;
+        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+    };
+
     useEffect(() => {
         const fetchTasks = async () => {
                 try {
@@ -42,10 +40,10 @@ export const Gant = () => {
                     let newList = [];
                     data.forEach(element => {
                         newList.push({ 
-                            id: element.id,
+                            id: element.id, 
                             name: element.title, 
-                            start: new Date(element.startDate).toISOString().slice(0, 10), 
-                            end: new Date(element.endDate).toISOString().slice(0, 10), 
+                            start:formatDate(new Date(element.startDate)),
+                            end: formatDate(new Date(element.endDate)),
                             description: element.description, 
                             progress: element.progress });
                     });
@@ -101,10 +99,7 @@ export const Gant = () => {
     const [ modalButtons, setModalButtons ] = useState(false);
     const [ modalPlan, setModalPlan ] = useState(false);
 
-    const formatDate = (date) => {
-        const pad = (number) => (number < 10 ? '0' : '') + number;
-        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
-    };
+  
 
     const changeDate = (task, newStart, newEnd) => {
         const updatedTask = { ...task, start: formatDate(new Date(newStart)), end: formatDate(new Date(newEnd)) };

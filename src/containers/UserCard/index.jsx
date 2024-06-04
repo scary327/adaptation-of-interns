@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { UserCardModal } from "../UserCardModal";
 import styles from './user-card.module.css';
+import { UserInfoContext } from "../../RootApp";
 
 export const UserCard = (props) => {
 
     const { userInfo } = props;
+    const { roleDictionary } = useContext(UserInfoContext);
     const [ openModal, setOpenModal ] = useState(false);
 
     return (
@@ -17,7 +19,7 @@ export const UserCard = (props) => {
                     {userInfo.surname} {userInfo.name}
                 </div>
                 <div className={styles.user_description}>
-                    {userInfo.descriptionProfile}
+                    {roleDictionary[userInfo.role]}
                 </div>
             </div>
             { openModal && (

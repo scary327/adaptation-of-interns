@@ -30,11 +30,34 @@ export const ModalPlan = (props) => {
             fetchPlans();
     }, []);
 
-    const openPlan = (id) => {
+    const openPlan = async (id) => {
         try {
             fetch(`${server}/pattern/plan/assembled/${id}?internId=${internId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json;charset=utf-8' },
+            }).then(async () => {
+                const response = await fetch(`${server}/internship/task/intern/${internId}`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json;charset=utf-8' },
+                });
+    
+                if (!response.ok) {
+                    throw new Error('HTTP error');
+                }
+    
+                let data = await response.json();
+                let newList = [];
+                data.forEach(element => {
+                    newList.push({ 
+                        id: element.id,
+                        name: element.title, 
+                        start: new Date(element.startDate).toISOString().slice(0, 10), 
+                        end: new Date(element.endDate).toISOString().slice(0, 10), 
+                        description: element.description, 
+                        progress: element.progress });
+                });
+                console.log(newList);
+                setTasksList(newList.length > 0 ? newList : tasksList);
             });
         } catch (error) {
             console.error('Error fetching plans:', error);

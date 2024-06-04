@@ -5,7 +5,10 @@ export const TasksList = (props) => {
     const { server, userInfo } = useContext(UserInfoContext);
     const {patternTasksList, tasksList, setTasksList, internId} = props;
 
-    
+    const formatDate = (date) => {
+        const pad = (number) => (number < 10 ? '0' : '') + number;
+        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+    };
 
     const addTask = (task) => {
         const taskToSend = {
@@ -31,8 +34,8 @@ export const TasksList = (props) => {
             const newTask = {
                 id: data.id,
                 name: data.title,
-                start: new Date().toISOString().slice(0, 10),
-                end: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
+                start: formatDate(new Date()),
+                end: formatDate(new Date(Date.now() + 5 * 24 * 60 * 60 * 1000)),
                 progress: 0,
                 description: data.description
             };
