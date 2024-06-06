@@ -17,7 +17,7 @@ export const TasksList = (props) => {
         setCurrentPage(page);
     }, []);
 
-    const addTask = (task) => {
+    const addTask = async (task) => {
         let newTask = {};
         if (currentPage === "gantt") {
             const taskToSend = {
@@ -31,7 +31,7 @@ export const TasksList = (props) => {
                 mentorReview: "",
                 progress: 0
             }
-            fetch(`${server}/internship/task`, {
+            await fetch(`${server}/internship/task`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json;charset=utf-8' },
                 body: JSON.stringify(taskToSend)
@@ -48,6 +48,7 @@ export const TasksList = (props) => {
                     progress: 0,
                     description: data.description
                 };
+                console.log(newTask);
             })
         } else {
             newTask = {
@@ -60,6 +61,7 @@ export const TasksList = (props) => {
                 reusable: true
             };
         }
+        console.log(newTask);
         const newList = JSON.stringify(tasksList[0]) !== '{}' ? [...tasksList, newTask] : [ newTask ]; 
         setTasksList(newList);
     }
