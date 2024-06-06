@@ -1,4 +1,4 @@
-.black-button {
+.black_button {
     background-color: #101010;
     border: none;
     color: #ffffff;
@@ -6,18 +6,18 @@
     font-weight: 400;
     font-size: 40px;
     padding: 25px 50px;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    &:active {
+        outline: 3px solid #ffffff;
+    }
 }
 
-.black-button:hover {
-    transform: scale(1.1);
-}
-
-.black-button:active {
-    outline: 3px solid #ffffff;
-}
-
-.empty-button {
+.empty_button {
     font-family: 'Kanit Cyrillic';
     background: none;
     border: none;
@@ -25,15 +25,15 @@
     font-size: 26px;
     text-align: center;
     color: #03160E;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+        transform: translateY(10px);
+        border-bottom: 3px solid #F5D82D;
+    }
 }
 
-.empty-button:hover {
-    transform: translateY(10px);
-    border-bottom: 3px solid #F5D82D;
-}
-
-.orange-button {
+.orange_button {
     font-family: 'Kanit Cyrillic';
     font-weight: 400;
     font-size: 26px;
@@ -41,13 +41,13 @@
     color: #03160E;
     border: none;
     padding: 20px 50px;
-    transition: transform 0.2s;
-}
+    transition: transform 0.2s ease-in-out;
 
-.orange-button:hover {
-    transform: scale(1.1);
-}
+    &:hover {
+        transform: scale(1.1);
+    }
 
-.orange-button:active {
-    outline: 3px solid #03160E;
+    &:active {
+        outline: 3px solid #03160E;
+    }
 }

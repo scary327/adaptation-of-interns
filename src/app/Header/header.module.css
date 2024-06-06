@@ -1,19 +1,18 @@
-@import url(./navigation-element.css);
-
-.header-navigation__container {
+.container {
     width: 100px;
     min-height: 100vh;
     background-color: #F5D82D;
     color: #000000;
     display: flex;
     flex-direction: column;
+    row-gap: 10px;
     align-items: center;
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.10);
     padding: 40px 0;
     transition: width 0.25s ease-in;
 }
 
-.header-navigation__burger-container {
+.burger_container {
     display: flex;
     align-items: center;
     column-gap: 20px;
@@ -21,50 +20,50 @@
     user-select: none;
 }
 
-.header-navigation__burger-text {
+.burger_text {
     display: none;
     font-family: "Kanit Cyrillic";
     font-size: 25px;
 }
 
-.header-navigation__burger-text__open {
+.burger_text__open {
     display: block;
 }
 
-.header-navigation__nav-icon{
+.nav_icon{
     width: 35px;
     height: 30px;
     position: relative;
     display: inline-block;
 }
-.header-navigation__nav-icon span{
+.nav_icon span{
     background-color:#000000;
     position: absolute;
     border-radius: 2px;
     transition: .3s cubic-bezier(.8, .5, .2, 1.4);
 }
-.header-navigation__nav-icon span:nth-child(1){
+.nav_icon span:nth-child(1){
     width: 100%;
     height:  4px;
     display: block;
     top: 0px;
     left: 0px;
 }
-.header-navigation__nav-icon span:nth-child(2){
+.nav_icon span:nth-child(2){
     width: 100%;
     height:  4px;
     display: block;
     top: 13px;
     left: 0px;
 }
-.header-navigation__nav-icon span:nth-child(3){
+.nav_icon span:nth-child(3){
     width: 100%;
     height:  4px;
     display: block;
     bottom: 0px;
     left: 0px;
 }
-.header-navigation__nav-icon:not(.nav-icon__open):hover span:nth-child(1){
+.nav_icon:not(.nav_icon__open):hover span:nth-child(1){
     width: 100%;
     height:  4px;
     display: block;
@@ -72,7 +71,7 @@
     left: 0px;
     transition: .3s cubic-bezier(.8, .5, .2, 1.4);
 }
-.header-navigation__nav-icon:not(.nav-icon__open):hover span:nth-child(2){
+.nav_icon:not(.nav_icon__open):hover span:nth-child(2){
     width: 100%;
     height:  4px;
     display: block;
@@ -80,7 +79,7 @@
     left: 0px;
     transition: .4s cubic-bezier(.8, .5, .2, 1.4);
 }
-.header-navigation__nav-icon:not(.nav-icon__open):hover span:nth-child(3){
+.nav_icon:not(.nav_icon__open):hover span:nth-child(3){
     width: 100%;
     height:  4px;
     display: block;
@@ -88,10 +87,10 @@
     left: 0px;
     transition: .3s cubic-bezier(.8, .5, .2, 1.4);
 }
-.header-navigation__nav-icon.nav-icon__open {
+.nav_icon.nav_icon__open {
     transform: rotate(90deg);
 }
-.header-navigation__nav-icon.nav-icon__open span:nth-child(1){
+.nav_icon.nav_icon__open span:nth-child(1){
     left:3px;
     top: 12px;
     width: 30px;
@@ -99,7 +98,7 @@
     transform: rotate(90deg);
     transition-delay: 150ms;
 }
-.header-navigation__nav-icon.nav-icon__open span:nth-child(2){
+.nav_icon.nav_icon__open span:nth-child(2){
     left:2px;
     top: 20px;
     width: 20px;
@@ -107,7 +106,7 @@
     transform: rotate(45deg);
     transition-delay: 50ms;
 }
-.header-navigation__nav-icon.nav-icon__open span:nth-child(3){
+.nav_icon.nav_icon__open span:nth-child(3){
     left:14px;
     top: 20px;
     width: 20px;
@@ -116,7 +115,7 @@
     transition-delay: 100ms;
 }
 
-.header-navigation__nav-list {
+.nav_list {
     display: flex;
     flex-direction: column;
     align-items: center;

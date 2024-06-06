@@ -1,9 +1,4 @@
-@import url(./styles/loader.css);
-@import url(./styles/pages/all-pages.css);
-@import url(./styles/containers/all-container.css);
-@import url(./styles/components/all-components.css);
 @import url(../../node_modules/normalize.css/normalize.css);
-@import url(./styles/navigation/header-navigation.css);
 
 * {
     box-sizing: border-box;

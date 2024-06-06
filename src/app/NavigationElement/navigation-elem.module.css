@@ -1,4 +1,4 @@
-.navigation-elem__container {
+.container {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -8,23 +8,23 @@
     padding: 10px 20px;
 }
 
-.navigation-elem__page-open {
+.page_open {
     background-color: #000000;
     color: #F5D82D;
 }
 
-.navigation-elem__icon {
+.icon {
     width: 50px;
     height: 50px;
 }
 
-.navigation-elem__name {
+.name {
     display: none;
     font-family: 'Kanit Cyrillic';
     font-weight: 400;
     font-size: 25px;
 }
 
-.navigation-elem__open {
+.open {
     display: block;
 }

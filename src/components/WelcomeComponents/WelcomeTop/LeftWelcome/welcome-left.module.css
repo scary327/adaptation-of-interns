@@ -1,5 +1,5 @@
-.welcome-left__container {
-    max-width: 50vw;
+.container {
+    max-width: 40vw;
     height: 100vh;
     padding: 0 70px;
     display: flex;
@@ -10,7 +10,7 @@
     background-color: #F5D82D;
 }
 
-.welcome-left__title {
+.title {
     margin: 0;
     font-family: 'Involve';
     font-weight: 400;
@@ -19,7 +19,7 @@
     color: #03160E;
 }
 
-.welcome-left__description {
+.description {
     font-family: 'Involve';
     font-weight: 400;
     font-size: 30px;

@@ -1,20 +1,20 @@
-.user-list__container {
+.container {
     display: flex;
     width: 100vw;
 }
 
-.user-list__main-container {
+.main_container {
     padding: 22px;
     width: 100vw;
 }
 
-.user-list__top-container {
+.top_container {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.user-list__title {
+.title {
     margin: 0;
     padding: 0;
     font-family: 'Involve';
@@ -22,12 +22,12 @@
     color: #101010;
 }
 
-.user-list__admin-top-container {
+.admin_top_container {
     display: flex;
     column-gap: 80px;
 }
 
-.user-list__admin-btn {
+.admin_btn {
     font-family: 'Inter Bold';
     font-size: 25px;
     line-height: 120%;
@@ -35,14 +35,18 @@
     color: #232323;
     padding: 0 25px;
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25);
-    transition: transform 0.2s;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.07);
+    }
+
+    &:active {
+        background-color: #d1b725;
+    }
 }
 
-.user-list__admin-btn:hover {
-    transform: scale(1.07);
-}
-
-.user-list__filter-container {
+.filter_container {
     display: flex;
     align-items: center;
     column-gap: 30px;
@@ -50,7 +54,7 @@
     height: 50px;
 }
 
-.user-list__filter-input {
+.filter_input {
     background-image: url('src/theme/images/magnifying-glass.svg');
     background-repeat: no-repeat;
     background-position: left center;
@@ -64,7 +68,7 @@
     color: #232323;
 }
 
-.user-list__filter-description {
+.filter_description {
     font-family: 'Kanit Cyrillic';
     font-size: 25px;
     color: #232323;
@@ -72,14 +76,14 @@
     line-height: 120%;
 }
 
-.user-list__user-cards {
+.user_cards__container {
     margin: 50px;
     display: flex;
     flex-wrap: wrap;
     gap: 70px;
 }
 
-.user-list__filter-role-container {
+.role_container {
     display: flex;
     align-items: center;
     column-gap: 30px;

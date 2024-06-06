@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from "react";
+import styles from './user-list.module.css';
 import { UserInfoContext } from '../../RootApp';
 import { HeaderContainer } from "../../app/Header/HeaderContainer";
 import { UserCard } from "../../containers/UserCard";
@@ -108,29 +109,29 @@ export const UserList = () => {
     const [modalOpen, setOpenModal] = useState(false);
 
     return (
-        <div className="user-list__container">
+        <div className={styles.container}>
             <HeaderContainer />
-            <div className="user-list__main-container">
-                <div className="user-list__top-container">
+            <div className={styles.main_container}>
+                <div className={styles.top_container}>
                     { userInfo.role === 'Admin' ? (
-                        <div className="user-list__admin-top-container">
-                            <p className="user-list__title">Пользователи</p>
-                            <button type="button" onClick={() => setOpenModal(true)} className="user-list__admin-btn">Добавить</button>
+                        <div className={styles.admin_top_container}>
+                            <p className={styles.title}>Пользователи</p>
+                            <button type="button" onClick={() => setOpenModal(true)} className={styles.admin_btn}>Добавить</button>
                             <CreateNewUser userList={userList} setUserList={setUserList}  modalOpen={modalOpen} closeModal={() => setOpenModal(false)} />
                         </div>
                     ) : (
-                        <p className="user-list__title">Стажёры</p>
+                        <p className={styles.title}>Стажёры</p>
                     )}
                     <UserRightInfo />
                 </div>
                 { userInfo.role === 'Admin' ? (
-                    <form className="user-list__filter-container">
+                    <form className={styles.filter_container}>
                         <input type='text' 
                             placeholder="поиск..." 
-                            className="user-list__filter-input"
+                            className={styles.filter_input}
                             onChange={(e) => setSearchQuery(e.target.value)} />
-                        <span className="user-list__filter-description">должность:</span>
-                        <div className="user-list__filter-role-container">
+                        <span className={styles.filter_description}>должность:</span>
+                        <div className={styles.role_container}>
                             {filterList.map((role) => (
                                 <FilterRole name={role.name} key={role.id} onClick={() => setFilterRole(role.role)} />
                             ))}
@@ -139,7 +140,7 @@ export const UserList = () => {
                 ) : (
                     <></>
                 ) }
-                <div className="user-list__user-cards">
+                <div className={styles.user_cards__container}>
                     {userInfo.role === 'Admin' && filteredUsers.map((user) => (
                         <UserCard userInfo={user} key={user.id} />
                     ))}

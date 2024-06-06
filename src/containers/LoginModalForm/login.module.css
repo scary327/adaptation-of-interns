@@ -1,4 +1,4 @@
-.login-modal__bg-container {
+.bg_container {
     background-color: rgba(26, 26, 26, 0.75);
     position: fixed;
     top: 0;
@@ -8,7 +8,7 @@
     z-index: 999;
 }
 
-.login-modal__main-container {
+.main_container {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -18,7 +18,7 @@
     padding: 30px 100px;
 }
 
-.login-modal__close-btn {
+.close_btn {
     position: absolute;
     top: 0;
     right: 0;
@@ -29,7 +29,7 @@
     padding: 10px;
 }
 
-.login-modal__title {
+.title {
     font-family: "Kanit Cyrillic";
     font-weight: 400;
     font-size: 35px;
@@ -38,52 +38,53 @@
     color: #3E4542;
 }
 
-.login-modal__form-container {
+.form_container {
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 20px;
 }
 
-.login-modal__form {
+.form {
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 30px;
 }
 
-.login-modal__form-input {
+.form_input {
     font-family: "Kanit Cyrillic";
     font-weight: 400;
     font-size: 22px;
     border: none;
+    outline: none;
     border-bottom: 1px solid #3E4542;
     padding: 10px 30px 10px 10px;
+
+    &:focus {
+        outline: 1px solid #3E4542;
+    }
 }
 
-.login-modal__form-input:focus {
-    outline: 1px solid #3E4542;
-}
-
-.login-modal__error-span {
+.error_span {
     color: red;
     font-size: 15px;
     font-family: "Involve";
 }
 
-.login-modal__submit-btn {
+.submit_btn {
     font-family: "Involve";
     font-size: 35px;
     font-weight: 400;
     color: #3E4542;
     padding: 10px;
     border-radius: 10px;
-}
 
-.login-modal__submit-btn:hover {
-    outline: 1px solid #3E4542;
-}
+    &:hover {
+        outline: 1px solid #3E4542;
+    }
 
-.login-modal__submit-btn:active {
-    background-color: #afafaf;
+    &:active {
+        background-color: #afafaf;
+    }
 }

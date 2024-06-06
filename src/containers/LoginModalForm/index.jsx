@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { UserInfoContext } from "../../RootApp";
+import styles from './login.module.css';
 
 const LoginModalForm = (props) => {
 
@@ -43,14 +44,14 @@ const LoginModalForm = (props) => {
 
     return (
         openModal && (
-            <div className="login-modal__bg-container">
-                <div className="login-modal__main-container">
-                    <button className="login-modal__close-btn" onClick={() => setOpenModal(false)}>
+            <div className={styles.bg_container}>
+                <div className={styles.main_container}>
+                    <button className={styles.close_btn} onClick={() => setOpenModal(false)}>
                         x
                     </button>
-                    <div className="login-modal__form-container">
-                        <p className="login-modal__title">Вход</p>
-                        <form className="login-modal__form" onSubmit={handleSubmit(onSubmit)}>
+                    <div className={styles.form_container}>
+                        <p className={styles.title}>Вход</p>
+                        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                             <input
                                 id="email"
                                 type="text"
@@ -62,9 +63,9 @@ const LoginModalForm = (props) => {
                                     }
                                 })} 
                                 placeholder="Электронная почта"
-                                className="login-modal__form-input"
+                                className={styles.form_input}
                                 />
-                            {errors.email && <span className="login-modal__error-span">{errors.email.message}</span>}
+                            {errors.email && <span className={styles.error_span}>{errors.email.message}</span>}
                             <input 
                                 id="password"
                                 type="password"
@@ -80,10 +81,10 @@ const LoginModalForm = (props) => {
                                     }
                                 })}
                                 placeholder="Пароль"
-                                className="login-modal__form-input"
+                                className={styles.form_input}
                                 />
-                                {errors.password && <span className="login-modal__error-span">{errors.password.message}</span>}
-                            <button className="login-modal__submit-btn" type="submit">Войти в аккаунт</button>
+                                {errors.password && <span className={styles.error_span}>{errors.password.message}</span>}
+                            <button className={styles.submit_btn} type="submit">Войти в аккаунт</button>
                         </form>
                     </div>
                 </div>

@@ -1,0 +1,50 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(src/theme/images/welcome_bg.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    color: #F5F6F6;
+}
+
+.top_container {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.small_title {
+    font-family: 'Involve';
+    font-size: 25px;
+    line-height: 120%;
+    color: rgba(245, 246, 246, 0.57);
+}
+
+.hr {
+    border-bottom: 3px solid #F5F6F6;
+    width: 100%;
+}
+
+.main_container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    padding-inline: 50px;
+}
+
+.title {
+    font-family: 'Involve';
+    font-size: 70px;
+    line-height: 120%;
+}
+
+.description {
+    font-family: 'Involve';
+    font-size: 40px;
+    line-height: 120%;
+}

@@ -1,4 +1,4 @@
-.filter-role__container {
+.container {
     font-family: 'Kanit Cyrillic';
     font-size: 25px;
     color: #232323;
@@ -7,9 +7,9 @@
     cursor: pointer;
     user-select: none;
     transition: transform 0.2s ease-in;
-}
 
-.filter-role__container:hover {
-    border-bottom: 2px solid #232323;
-    transform: translateY(-20%);
+    &:hover {
+        border-bottom: 2px solid #232323;
+        transform: translateY(-20%);
+    }
 }

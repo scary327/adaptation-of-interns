@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+.top_container, .section{
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-align: start;
+}
+
+.hidden {
+    display: none;
+}
+
+.top_container {
+    display: flex;
+}
