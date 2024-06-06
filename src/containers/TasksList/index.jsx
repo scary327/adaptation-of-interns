@@ -48,7 +48,6 @@ export const TasksList = (props) => {
                     progress: 0,
                     description: data.description
                 };
-                console.log(newTask);
             })
         } else {
             newTask = {
@@ -61,7 +60,6 @@ export const TasksList = (props) => {
                 reusable: true
             };
         }
-        console.log(newTask);
         const newList = JSON.stringify(tasksList[0]) !== '{}' ? [...tasksList, newTask] : [ newTask ]; 
         setTasksList(newList);
     }

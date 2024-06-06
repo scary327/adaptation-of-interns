@@ -18,7 +18,6 @@ export const UserProfile = () => {
     } = useForm();
 
     async function saveChanges(data) {
-        console.log(data);
         const dataToSend = {
             name: data.name,
             surname: data.surname,

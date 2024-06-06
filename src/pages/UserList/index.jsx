@@ -56,20 +56,6 @@ export const UserList = () => {
     
         fetchUsers();
     }, []);
-        
-    // const usersList = [
-    //     {
-    //         id: userInfo.id,
-    //         surname: userInfo.surname,
-    //         name: userInfo.name,
-    //         middleName: userInfo.middleName,
-    //         email: userInfo.email,
-    //         img: userInfo.img,
-    //         role: userInfo.role,
-    //         descriptionProfile: userInfo.descriptionProfile,
-    //         vk: userInfo.vk,
-    //         telegram: userInfo.telegram
-    //     },
 
     const filterList = [
         {

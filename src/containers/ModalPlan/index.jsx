@@ -61,7 +61,6 @@ export const ModalPlan = (props) => {
                         description: element.description, 
                         progress: element.progress });
                 });
-                console.log(newList);
                 setTasksList(newList.length > 0 ? newList : tasksList);
             });
         } catch (error) {
