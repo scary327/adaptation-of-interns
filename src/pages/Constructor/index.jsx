@@ -8,6 +8,7 @@ import { ModalTask } from "../../containers/ModalTask";
 import { SavePlanContainer } from "../../containers/SavePlanContainer";
 import { UserInfoContext } from '../../RootApp';
 import { InstructionModal } from "../../components/InstructionModal";
+import { DeletePlanModal } from "../../containers/DeletePlanModal";
 export const Constructor = () => {
     
     const { server } = useContext(UserInfoContext);
@@ -48,6 +49,7 @@ export const Constructor = () => {
 
     const [ openModalPlan, setOpenModalPlan ] = useState(false);
     const [ openInstructionModal, setOpenInstructionModal ] = useState(false);
+    const [ openDeleteModal, setOpenDeleteModal ] = useState(false);
 
     return (
         <div className={styles.container}>
@@ -88,6 +90,9 @@ export const Constructor = () => {
                         <img src='src/theme/images/plus.svg' alt='plus-img' 
                             className={styles.plus_img} />
                     </button>
+                    <button className={styles.delete_btn} onClick={() => setOpenDeleteModal(true)}>
+                        Удалить план
+                    </button>
                     <button className={styles.save_plan} onClick={() => setOpenModalPlan(true)}>
                         Сохранить план
                     </button>
@@ -105,6 +110,11 @@ export const Constructor = () => {
                     modalOpen={openModalPlan} 
                     closeModal={() => setOpenModalPlan(false)}
                     tasksList={tasksList} />
+            )}
+            {openDeleteModal && (
+                <DeletePlanModal 
+                    openModal={openDeleteModal}
+                    closeModal={() => setOpenDeleteModal(false)}/>
             )}
         </div>
     )

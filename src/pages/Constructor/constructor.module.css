@@ -84,6 +84,24 @@
     border: 2px solid #101010;
 }
 
+.delete_btn {
+    font-family: 'Involve';
+    font-size: 25px;
+    line-height: 120%;
+    color: #c4302b;
+    border-bottom: 2px solid #c4302b;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+        transform: translateY(5px);
+    }
+
+    &:active{
+        border-bottom: none;
+        outline: 2px solid #c4302b;
+    }
+}
+
 .save_plan {
     padding: 10px 30px;
     font-family: 'Inter Bold';
