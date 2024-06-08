@@ -47,7 +47,6 @@ export const Gant = () => {
                             description: element.description, 
                             progress: element.progress });
                     });
-                    console.log(newList);
                     setTasksList(newList.length > 0 ? newList : tasksList);
 
                     const secondResponse = await fetch(`${server}/user/${internId}`, {
@@ -125,8 +124,7 @@ export const Gant = () => {
                             viewMode={viewMode}
                             onClick={(task) => taskInfo(task)}
                             onDateChange={(task, start, end) => changeDate(task, start, end)}
-                            onProgressChange={(task, progress) => changeProgress(task, progress)}
-                            onTasksChange={(tasks) => console.log(tasks)} />
+                            onProgressChange={(task, progress) => changeProgress(task, progress)} />
                     <ModalTask
                         task={selectedTask}
                         openModal={modalTask}

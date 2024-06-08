@@ -43,10 +43,6 @@ export const Constructor = () => {
         setTasksList(newList);
     };
 
-    useEffect(() => {
-        console.log(tasksList);
-    }, [tasksList]);
-
     const [ openModalPlan, setOpenModalPlan ] = useState(false);
     const [ openInstructionModal, setOpenInstructionModal ] = useState(false);
     const [ openDeleteModal, setOpenDeleteModal ] = useState(false);
@@ -71,8 +67,7 @@ export const Constructor = () => {
                         viewMode={viewMode}
                         onClick={(task) => taskInfo(task)}
                         onDateChange={(task, start, end) => changeDate(task, start, end)}
-                        onProgressChange={(task, progress) => changeProgress(task, progress)}
-                        onTasksChange={(tasks) => console.log(tasks)} />
+                        onProgressChange={(task, progress) => changeProgress(task, progress)}/>
                     <ModalTask
                         task={selectedTask}
                         openModal={modalTask}

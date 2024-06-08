@@ -9,6 +9,11 @@ export const ModalPlan = (props) => {
     const { modalOpen, closeModal, tasksList, setTasksList, internId } = props;
     const [planList, setPlanList] = useState([]);
     
+    const formatDate = (date) => {
+        const pad = (number) => (number < 10 ? '0' : '') + number;
+        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+    };
+
     useEffect(() => {
         const fetchPlans = async () => {
                 try {
@@ -49,14 +54,13 @@ export const ModalPlan = (props) => {
                 let newList = [];
                 data.forEach(element => {
                     newList.push({ 
-                        id: element.id,
+                        id: element.id, 
                         name: element.title, 
-                        start: new Date(element.startDate).toISOString().slice(0, 10), 
-                        end: new Date(element.endDate).toISOString().slice(0, 10), 
+                        start:formatDate(new Date(element.startDate)),
+                        end: formatDate(new Date(element.endDate)),
                         description: element.description, 
                         progress: element.progress });
                 });
-                console.log(newList);
                 setTasksList(newList.length > 0 ? newList : tasksList);
             });
         } catch (error) {

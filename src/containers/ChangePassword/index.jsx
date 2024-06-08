@@ -11,7 +11,6 @@ export const ChangePassword = ({close}) => {
     } = useForm();
 
     const change = async (data) => {
-        console.log(data);
         await fetch(`${server}/auth/${userInfo.id}/changePassword?oldPassword=${data.oldPassword}&newPassword=${data.newPassword}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
