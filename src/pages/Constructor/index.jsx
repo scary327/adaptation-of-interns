@@ -1,17 +1,16 @@
-import { useEffect, useState, useContext } from "react";
+import { useState } from "react";
 import { HeaderContainer } from "../../app/Header/HeaderContainer";
 import { UserRightInfo } from "../../components/UserRightInfo";
 import styles from './constructor.module.css';
 import { NewTaskButtons } from "../../components/newTaskButtons";
 import { FrappeGantt } from "frappe-gantt-react";
 import { ModalTask } from "../../containers/ModalTask";
-import { SavePlanContainer } from "../../containers/SavePlanContainer";
-import { UserInfoContext } from '../../RootApp';
 import { InstructionModal } from "../../components/InstructionModal";
 import { DeletePlanModal } from "../../containers/DeletePlanModal";
+import { SavePlanContainer } from "../../containers/SavePlanContainer";
+
 export const Constructor = () => {
-    
-    const { server } = useContext(UserInfoContext);
+
     const [tasksList, setTasksList] = useState([ { } ]);
 
     const [viewMode, setViewMode] = useState('Day');
@@ -53,7 +52,7 @@ export const Constructor = () => {
             <div className={styles.main__container}>
                 <div className={styles.top_container}>
                     <div className={styles.title}>
-                        Гант
+                        Конструктор
                     </div>
                     <UserRightInfo />
                 </div>

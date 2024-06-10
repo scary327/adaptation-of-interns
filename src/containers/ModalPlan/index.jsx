@@ -1,7 +1,8 @@
-import { useState, useEffect, useContext } from 'react';
+import {useState, useEffect, useContext, useRef} from 'react';
 import styles from './modal-plan.module.css';
 import Modal from 'react-modal';
 import { UserInfoContext } from '../../RootApp';
+import InputCalendar from '../../theme/images/input_calendar.svg';
 
 export const ModalPlan = (props) => {
 
@@ -68,6 +69,9 @@ export const ModalPlan = (props) => {
         }
     }
 
+    const [ planDate, setPlanDate ] = useState('');
+    const inputRef = useRef(null);
+
     return (
         <Modal
             isOpen={modalOpen} 
@@ -84,6 +88,13 @@ export const ModalPlan = (props) => {
                 <div className={styles.main_container}>
                     <p className={styles.title}>Выбор плана</p>
                     <input type='text' placeholder='поиск...' className={styles.modal_input} />
+                    <div className={styles.date_container}>
+                        <input
+                            type='date'
+                            className={styles.modal_date_input}
+                            ref={inputRef}
+                            onChange={(e) => setPlanDate(e.target.value)} />
+                    </div>
                     <div className={styles.list_container}>
                         {planList.map((plan) => 
                             <div key={plan.id} onClick={() => openPlan(plan.id)} className={styles.plan_div}>{plan.title}</div>

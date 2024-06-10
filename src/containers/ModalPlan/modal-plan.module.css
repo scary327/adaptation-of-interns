@@ -60,3 +60,51 @@
     font-size: 20px;
     line-height: 120%;
 }
+
+.date_container {
+    align-self: center;
+    position: relative;
+}
+
+.modal_date_input {
+    background-color: #F5D82D;
+    font-family: 'Involve';
+    font-size: 24px;
+    line-height: 120%;
+    padding: 10px;
+    color: #232323;
+    outline: none;
+    border: none;
+
+    &:hover {
+        background-color: #bea722;
+    }
+
+    &:focus {
+        outline: 2px solid #232323;
+    }
+}
+
+.modal_date_input::-webkit-calendar-picker-indicator {
+    background: url('../../theme/images/input_calendar.svg') no-repeat right center;
+    background-size: 2rem;
+}
+
+.date_button {
+    font-family: 'Kanit Cyrillic';
+    font-size: 20px;
+    line-height: 120%;
+    padding: 5px 15px;
+    color: #232323;
+    background-color: white;
+    border: 2px solid #F5D82D;
+    outline: none;
+
+    &:hover {
+        background-color: #a2a2a2;
+    }
+}
+
+.date_span {
+
+}

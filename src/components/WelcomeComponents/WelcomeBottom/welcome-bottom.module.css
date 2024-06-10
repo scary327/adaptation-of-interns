@@ -48,3 +48,12 @@
     font-size: 40px;
     line-height: 120%;
 }
+
+.footer_text {
+    margin-top: auto;
+    align-self: flex-end;
+    font-family: 'Involve';
+    font-size: 20px;
+    line-height: 120%;
+    color: rgba(245, 246, 246, 0.57);
+}

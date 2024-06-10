@@ -20,6 +20,10 @@ export const ModalTask = (props) => {
         }
     }
 
+    const finishTask = () => {
+        console.log(123);
+    }
+
     return (
         task &&
             <Modal
@@ -45,6 +49,12 @@ export const ModalTask = (props) => {
                             type='button'
                             onClick={() => deleteTask()} >
                             Удалить
+                        </button>
+                        <button
+                            type='button'
+                            className={styles.end_btn}
+                            onClick={() => finishTask()}>
+                            Завершить
                         </button>
                         <button 
                             type='button' 

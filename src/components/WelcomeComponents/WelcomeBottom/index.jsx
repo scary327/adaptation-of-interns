@@ -14,6 +14,9 @@ export const WelcomeBottomComponent = () => {
                     Благодаря возможности отслеживания и&nbsp;распределения задач по&nbsp;проектам, наши пользователи могут легко контролировать прогресс работы и&nbsp;оперативно реагировать на&nbsp;изменения в&nbsp;приоритетах.
                 </div>
             </div>
+            <div className={styles.footer_text}>
+                @ProphecyLabs
+            </div>
         </div>
     )
 }

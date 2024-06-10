@@ -90,9 +90,29 @@
     &:hover {
         color: #c4302b;
         outline-color: #c4302b;
+        transform: scale(1.05);
     }
 
     &:active {
+        background-color: #a2a2a2;
+    }
+}
+
+.end_btn {
+    align-self: center;
+    color: #232323;
+    font-family: 'Kanit Cyrillic';
+    font-size: 20px;
+    line-height: 120%;
+    padding: 10px 30px;
+    outline: 3px solid rgb(138, 138, 247);
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
         transform: scale(1.05);
+    }
+
+    &:active {
+        background-color: #a2a2a2;
     }
 }
