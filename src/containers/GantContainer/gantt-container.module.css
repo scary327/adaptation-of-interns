@@ -1,47 +1,11 @@
-.container {
-    display: flex;
-    width: 100vw;
-}
-
-.main__container {
+.main_container {
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    width: calc(100vw - 100px);
-}
-
-.top_container {
-    min-width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.title {
-    font-family: 'Involve';
-    font-size: 50px;
-    line-height: 120%;
-}
-
-.instruction_btn {
-    font-family: 'Inter Regular';
-    font-size: 18px;
-    line-height: 120%;
-    align-self: flex-start;
-    color: #232323;
-
-    &:hover {
-        border-bottom: 2px solid #232323;
-        margin-bottom: -2px;
-    }
-
-    &:active {
-        border-color: #F5D82D;
-    }
+    row-gap: 40px;
 }
 
 .gant_container {
-    margin: 30px 30px 0 30px;
+    padding-inline: 30px;
 }
 
 .change_view__container {
@@ -84,25 +48,7 @@
     border: 2px solid #101010;
 }
 
-.delete_btn {
-    font-family: 'Involve';
-    font-size: 25px;
-    line-height: 120%;
-    color: #c4302b;
-    border-bottom: 2px solid #c4302b;
-    transition: transform 0.2s ease-in-out;
-
-    &:hover {
-        transform: translateY(5px);
-    }
-
-    &:active{
-        border-bottom: none;
-        outline: 2px solid #c4302b;
-    }
-}
-
-.save_plan {
+.upload_plan_button {
     padding: 10px 30px;
     font-family: 'Inter Bold';
     font-size: 25px;
@@ -122,4 +68,28 @@
     &:active {
         background-color: #bea722;
     }
+}
+
+.update_button {
+    border: 2px solid #232323;
+    font-family: 'Kanit Cyrillic';
+    font-size: 24px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+
+    &:hover .update_svg {
+        transform: rotate(180deg);
+    }
+
+    &:active .update_svg {
+        transform: rotate(360deg);
+        transform: scale(0.3);
+    }
+}
+
+.update_svg {
+    width: 50px;
+    height: 50px;
+    transition: transform 0.2s ease-in-out;
 }

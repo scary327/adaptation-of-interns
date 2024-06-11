@@ -26,7 +26,7 @@ export const TasksList = (props) => {
                 description: task.description,
                 startDate: new Date(),
                 endDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
-                competitionDate: new Date(),
+                completionDate: null,
                 authorId: userInfo.id,
                 mentorReview: "",
                 progress: 0

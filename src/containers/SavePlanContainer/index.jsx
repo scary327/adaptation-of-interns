@@ -11,7 +11,7 @@ export const SavePlanContainer = (props) => {
     const methods = useForm();
 
     const onSubmit = (data) => {
-
+        localStorage.removeItem("tasksList");
         const dataToSend = {mentorId: userInfo.id, title: data.input, tasks: []};
         tasksList.forEach(task => 
             {  

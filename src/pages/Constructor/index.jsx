@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HeaderContainer } from "../../app/Header/HeaderContainer";
 import { UserRightInfo } from "../../components/UserRightInfo";
 import styles from './constructor.module.css';
@@ -19,6 +19,12 @@ export const Constructor = () => {
     const [ modalIsOpen, setModalIsOpen ] = useState(false);
     const [ modalTask, setModalTask ] = useState(false);
     const [ selectedTask, setSelectedTask ] = useState(null);
+
+    useEffect(() => {
+        const newList = localStorage.getItem("tasksList");
+        if (newList)
+            setTasksList(JSON.parse(newList))
+    }, []);
 
     const taskInfo = (task) => {
         setSelectedTask(task);
@@ -46,6 +52,10 @@ export const Constructor = () => {
     const [ openInstructionModal, setOpenInstructionModal ] = useState(false);
     const [ openDeleteModal, setOpenDeleteModal ] = useState(false);
 
+    useEffect(() => {
+        localStorage.setItem("tasksList", JSON.stringify(tasksList));
+    }, [tasksList]);
+
     return (
         <div className={styles.container}>
             <HeaderContainer />
@@ -70,6 +80,8 @@ export const Constructor = () => {
                     <ModalTask
                         task={selectedTask}
                         openModal={modalTask}
+                        tasksList={tasksList}
+                        setTasksList={setTasksList}
                         closeModal={() => setModalTask(false)} />
                 </div>
                 <div className={styles.change_view__container}>

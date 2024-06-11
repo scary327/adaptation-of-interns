@@ -119,7 +119,7 @@ export const CreateNewTask = (props) => {
                 internId: internId,
                 startDate: new Date(),
                 endDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
-                competitionDate: new Date(),
+                completionDate: null,
                 authorId: userInfo.id,
                 mentorReview: "",
                 progress: 0
@@ -132,6 +132,10 @@ export const CreateNewTask = (props) => {
     
         const newList = JSON.stringify(tasksList[0]) !== '{}' ? [...tasksList, newTask] : [newTask];
         setTasksList(newList);
+        if (currentPage === "constructor") { 
+            localStorage.setItem("tasksList", JSON.stringify(newList))
+        }
+        closeModal();
     };
 
    

@@ -5,23 +5,55 @@ import {useContext} from "react";
 
 export const ModalTask = (props) => {
 
-    const { task, openModal, closeModal, setTasksList, tasksList } = props;
-    const { server } = useContext(UserInfoContext);
+    const { task, openModal, closeModal, setTasksList, tasksList, internId, finishedTasks, setFinishedTasks } = props;
+    const { userInfo, server } = useContext(UserInfoContext);
+    const page = window.location.pathname.split('/')[1];
     
     const deleteTask = () => {
-        fetch(`${server}/internship/task/${task.id}`, {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json;charset=utf-8' },
-        });
-        if (tasksList.length === 1) {
-            setTasksList([{}]);
-        } else {
-            setTasksList(tasksList.filter(elem => elem.id !== task.id));
+        const updatedTasksList = tasksList.filter(elem => elem.id !== task.id);
+        if (page === 'gantt') {
+            fetch(`${server}/internship/task/${task.id}`, {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json;charset=utf-8' },
+            });
+        } else if (page === 'constructor') {
+            if (updatedTasksList.length === 0) {
+                localStorage.removeItem("tasksList");
+            } else {
+                localStorage.setItem("tasksList", JSON.stringify(updatedTasksList));
+            }
         }
+        setTasksList(updatedTasksList.length === 0 ? [{}] : updatedTasksList);
+        closeModal();
     }
 
     const finishTask = () => {
-        console.log(123);
+        const finishedTask = {
+            internId: internId,
+            title: task.name,
+            description: task.description,
+            startDate: new Date(task.start),
+            endDate: new Date(task.end),
+            completionDate: new Date(),
+            authorId: userInfo.id,
+            mentorReview: "",
+            progress: 100
+        }
+        fetch(`${server}/internship/task/${task.id}`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json;charset=utf-8'},
+            body: JSON.stringify(finishedTask)
+        }).then(response =>{
+            if (!response.ok) {
+                throw new Error('Ошибка завершения задачи');
+            }
+
+        });
+        const updatedTasksList = tasksList.filter(elem => elem.id !== task.id);
+        setTasksList(updatedTasksList.length === 0 ? [{}] : updatedTasksList);
+        //console.log({task, completionDate: new Date()});
+        setFinishedTasks([...finishedTasks, {...task, completionDate: new Date()}]);
+        closeModal();
     }
 
     return (

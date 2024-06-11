@@ -6,7 +6,7 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    row-gap: 40px;
+    row-gap: 20px;
     width: calc(100vw - 100px);
 }
 
@@ -16,92 +16,25 @@
     line-height: 120%;
 }
 
-.gant_container {
-    padding-inline: 30px;
+.top_container {
+    align-self: center;
+    display: flex;
+    column-gap: 50px;
 }
 
-.change_view__container {
-    margin: 20px 0;
-    color: #101010;
+.toggle_btn {
     font-family: 'Kanit Cyrillic';
     font-size: 20px;
     line-height: 120%;
-    display: flex;
-    column-gap: 20px;
-}
-
-.button_view_mode {
+    color: #232323;
+    border-bottom: 2px solid #F5D82D;
     transition: transform 0.2s ease-in-out;
 
     &:hover {
-        transform: translateY(-15%);
-        border-bottom: 2px solid #101010;
-        margin-bottom: -2px;
-    }
-}
-
-.buttons_container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.new_task {
-    max-width: 350px;
-    padding: 10px 30px;
-    font-family: 'Involve';
-    font-size: 25px;
-    line-height: 120%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    cursor: pointer;
-    user-select: none;
-    color: #101010;
-    border: 2px solid #101010;
-}
-
-.upload_plan_button {
-    padding: 10px 30px;
-    font-family: 'Inter Bold';
-    font-size: 25px;
-    line-height: 120%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    cursor: pointer;
-    user-select: none;
-    background-color: #F5D82D;
-    color: #232323;
-
-    &:hover {
-        outline: 2px solid #232323;
+        transform: translateY(20%);
     }
 
     &:active {
-        background-color: #bea722;
+        color: #F5D82D;
     }
-}
-
-.update_button {
-    border: 2px solid #232323;
-    font-family: 'Kanit Cyrillic';
-    font-size: 24px;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-
-    &:hover .update_svg {
-        transform: rotate(180deg);
-    }
-
-    &:active .update_svg {
-        transform: rotate(360deg);
-        transform: scale(0.3);
-    }
-}
-
-.update_svg {
-    width: 50px;
-    height: 50px;
-    transition: transform 0.2s ease-in-out;
 }

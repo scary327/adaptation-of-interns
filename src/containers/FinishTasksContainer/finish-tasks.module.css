@@ -1,0 +1,112 @@
+.container {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+}
+
+.modal_container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: #F9F9F9;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 20px 50px;
+    outline: none;
+}
+
+.header_container,
+.task_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) 2fr;
+    column-gap: 10px;
+}
+
+.header_button {
+    border-bottom: 2px solid #232323;
+}
+
+.header_div,
+.header_button  {
+    font-family: 'Inter Bold';
+    color: #232323;
+    font-size: 24px;
+    line-height: 120%;
+    text-align: center;
+}
+
+.table_div {
+    font-family: 'Inter Regular';
+    font-size: 20px;
+    line-height: 120%;
+    text-align: center;
+}
+
+.modal_main_container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.modal_title {
+    align-self: center;
+    font-family: 'Inter Bold';
+    font-size: 24px;
+    line-height: 120%;
+    color: #232323;
+    border-bottom: 2px solid #F5D82D;
+}
+
+.modal_input_container {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.modal_input_span {
+    font-family: 'Kanit Cyrillic';
+    font-size: 20px;
+    line-height: 120%;
+    color: #232323;
+}
+
+.mobal_btn {
+    align-self: center;
+    padding: 10px 30px;
+    font-family: 'Kanit Cyrillic';
+    font-size: 24px;
+    line-height: 120%;
+    color: #232323;
+    border: 2px solid #F5D82D;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    &:active {
+        background-color: rgb(210, 210, 210);
+    }
+}
+
+.fall_filter_btn {
+    align-self: flex-end;
+    padding: 10px 30px;
+    font-family: 'Kanit Cyrillic';
+    font-size: 20px;
+    line-height: 120%;
+    color: #232323;
+    border: 2px solid #c4302b;
+
+    &:hover {
+        color: #c4302b;
+    }
+
+    &:active {
+        background-color: rgb(209, 209, 209);
+    }
+}

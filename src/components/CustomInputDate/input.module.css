@@ -1,0 +1,23 @@
+.input {
+    background-color: #F5D82D;
+    font-family: 'Involve';
+    font-size: 24px;
+    line-height: 120%;
+    padding: 10px;
+    color: #232323;
+    outline: none;
+    border: none;
+
+    &:hover {
+        background-color: #bea722;
+    }
+
+    &:focus {
+        outline: 2px solid #232323;
+    }
+}
+
+.input::-webkit-calendar-picker-indicator {
+    background: url('../../theme/images/input_calendar.svg') no-repeat right center;
+    background-size: 2rem;
+}

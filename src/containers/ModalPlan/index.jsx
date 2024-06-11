@@ -1,8 +1,8 @@
-import {useState, useEffect, useContext, useRef} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import styles from './modal-plan.module.css';
 import Modal from 'react-modal';
 import { UserInfoContext } from '../../RootApp';
-import InputCalendar from '../../theme/images/input_calendar.svg';
+import { InputDate } from '../../components/CustomInputDate';
 
 export const ModalPlan = (props) => {
 
@@ -35,10 +35,10 @@ export const ModalPlan = (props) => {
             }
             fetchPlans();
     }, []);
-
+    const [ planDate, setPlanDate ] = useState('');
     const openPlan = async (id) => {
         try {
-            fetch(`${server}/pattern/plan/assembled/${id}?internId=${internId}`, {
+            fetch(`${server}/pattern/plan/assembled/${id}?internId=${internId}&StartDateInternship=${planDate}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json;charset=utf-8' },
             }).then(async () => {
@@ -60,17 +60,15 @@ export const ModalPlan = (props) => {
                         start:formatDate(new Date(element.startDate)),
                         end: formatDate(new Date(element.endDate)),
                         description: element.description, 
+                        completionDate: element.completionDate,
                         progress: element.progress });
                 });
-                setTasksList(newList.length > 0 ? newList : tasksList);
+                setTasksList(newList.length > 0 ? newList.filter(elem => elem.completionDate === null) : tasksList);
             });
         } catch (error) {
             console.error('Error fetching plans:', error);
         }
     }
-
-    const [ planDate, setPlanDate ] = useState('');
-    const inputRef = useRef(null);
 
     return (
         <Modal
@@ -89,11 +87,7 @@ export const ModalPlan = (props) => {
                     <p className={styles.title}>Выбор плана</p>
                     <input type='text' placeholder='поиск...' className={styles.modal_input} />
                     <div className={styles.date_container}>
-                        <input
-                            type='date'
-                            className={styles.modal_date_input}
-                            ref={inputRef}
-                            onChange={(e) => setPlanDate(e.target.value)} />
+                        <InputDate min={ formatDate(new Date()) } onChange={setPlanDate} />
                     </div>
                     <div className={styles.list_container}>
                         {planList.map((plan) => 
