@@ -128,7 +128,7 @@ export const UserList = () => {
                 ) }
                 <div className={styles.user_cards__container}>
                     {userInfo.role === 'Admin' && filteredUsers.map((user) => (
-                        <UserCard userInfo={user} key={user.id} />
+                        <UserCard userInfo={user} key={user.id} userList={userList} setUserList={setUserList}/>
                     ))}
                     {userInfo.role === 'Mentor' && userList.map((user) => (
                         <UserCard userInfo={user} key={user.id} />

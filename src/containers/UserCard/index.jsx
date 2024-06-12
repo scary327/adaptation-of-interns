@@ -5,7 +5,7 @@ import { UserInfoContext } from "../../RootApp";
 
 export const UserCard = (props) => {
 
-    const { userInfo } = props;
+    const { userInfo, userList, setUserList } = props;
     const { roleDictionary } = useContext(UserInfoContext);
     const [ openModal, setOpenModal ] = useState(false);
 
@@ -23,7 +23,7 @@ export const UserCard = (props) => {
                 </div>
             </div>
             { openModal && (
-                <UserCardModal cardUser={userInfo} 
+                <UserCardModal cardUser={userInfo} userList={userList} setUserList={setUserList}
                     closeModal={() => setOpenModal(false)} />
             )}
         </>

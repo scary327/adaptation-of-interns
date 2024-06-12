@@ -9,7 +9,7 @@ export const UserCardModal = (props) => {
 
     const { userInfo, setUserInfo } = useContext(UserInfoContext);
     const { server } = useContext(UserInfoContext);
-    const { cardUser, closeModal } = props;
+    const { cardUser, closeModal, userList, setUserList } = props;
     const translatedRole = roleDictionary[cardUser.role];
 
     const [mentors, setMentors] = useState([]);
@@ -21,6 +21,7 @@ export const UserCardModal = (props) => {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
         });
+        setUserList(userList.filter(elem => elem.id !== cardUser.id));
         closeModal()
         if (cardUser.id === userInfo.id) {
             localStorage.clear();
