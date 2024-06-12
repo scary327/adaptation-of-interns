@@ -82,12 +82,14 @@ export const ModalTask = (props) => {
                             onClick={() => deleteTask()} >
                             Удалить
                         </button>
-                        <button
-                            type='button'
-                            className={styles.end_btn}
-                            onClick={() => finishTask()}>
-                            Завершить
-                        </button>
+                        { page === 'gantt' && (
+                            <button
+                                type='button'
+                                className={styles.end_btn}
+                                onClick={() => finishTask()}>
+                                Завершить
+                            </button>
+                        )}
                         <button 
                             type='button' 
                             onClick={closeModal}

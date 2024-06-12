@@ -15,6 +15,9 @@
     width: 380px;
     min-height: 70px;
     max-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     overflow: hidden;
     padding: 20px;
     color: #232323;
@@ -25,4 +28,21 @@
     &:hover {
         outline: 2px solid #232323;
     }
+}
+
+.delete_btn {
+    padding: 10px;
+
+    &:hover {
+        background-color: #dadada;
+    }
+
+    &:active {
+        outline: 2px solid #c4302b;
+    }
+}
+
+.delete_img {
+    width: 30px;
+    height: 30px;
 }

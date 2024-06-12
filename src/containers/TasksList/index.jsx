@@ -1,6 +1,7 @@
 import styles from './tasks-list.module.css';
 import { UserInfoContext } from '../../RootApp';
 import { useState, useEffect, useContext } from 'react';
+import DeleteImage from '../../theme/images/deletePlan.svg';
 export const TasksList = (props) => {
     const { server, userInfo } = useContext(UserInfoContext);
     const {patternTasksList, tasksList, setTasksList, internId} = props;
@@ -69,7 +70,10 @@ export const TasksList = (props) => {
             {patternTasksList.map((task) => {
                 return (
                     <div key={task.id} onClick={() => addTask(task)} className={styles.task_container}>
-                        {task.title}
+                        <div>
+                            {task.title}
+                        </div>
+
                     </div>
                 )
             })}

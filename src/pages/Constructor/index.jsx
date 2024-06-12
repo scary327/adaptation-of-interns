@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect, useContext} from "react";
 import { HeaderContainer } from "../../app/Header/HeaderContainer";
 import { UserRightInfo } from "../../components/UserRightInfo";
 import styles from './constructor.module.css';
@@ -8,6 +8,9 @@ import { ModalTask } from "../../containers/ModalTask";
 import { InstructionModal } from "../../components/InstructionModal";
 import { DeletePlanModal } from "../../containers/DeletePlanModal";
 import { SavePlanContainer } from "../../containers/SavePlanContainer";
+import DeleteImage from "../../theme/images/deletePlan.svg";
+import {UserInfoContext} from "../../RootApp.jsx";
+import {DeleteTaskModal} from "../../components/DeleteTaskModal/index.jsx";
 
 export const Constructor = () => {
 
@@ -51,6 +54,7 @@ export const Constructor = () => {
     const [ openModalPlan, setOpenModalPlan ] = useState(false);
     const [ openInstructionModal, setOpenInstructionModal ] = useState(false);
     const [ openDeleteModal, setOpenDeleteModal ] = useState(false);
+    const [ openDeleteTaskModal, setOpenDeleteTaskModal ] = useState(false);
 
     useEffect(() => {
         localStorage.setItem("tasksList", JSON.stringify(tasksList));
@@ -91,17 +95,24 @@ export const Constructor = () => {
                     ))}
                 </div>
                 <div className={styles.buttons_container}>
-                    <button className={styles.new_task} onClick={() => setModalIsOpen(true)}>
-                        <span>Добавить задачу</span>
-                        <img src='src/theme/images/plus.svg' alt='plus-img' 
-                            className={styles.plus_img} />
-                    </button>
-                    <button className={styles.delete_btn} onClick={() => setOpenDeleteModal(true)}>
-                        Удалить план
-                    </button>
-                    <button className={styles.save_plan} onClick={() => setOpenModalPlan(true)}>
-                        Сохранить план
-                    </button>
+                    <div className={styles.duo_buttons_container}>
+                        <button className={styles.new_task} onClick={() => setModalIsOpen(true)}>
+                            <span>Добавить задачу</span>
+                            <img src='src/theme/images/plus.svg' alt='plus-img'
+                                 className={styles.plus_img} />
+                        </button>
+                        <button className={styles.delete_btn} onClick={() => setOpenDeleteTaskModal(true)}>
+                            Удалить шаблонные задачи
+                        </button>
+                    </div>
+                    <div className={styles.duo_buttons_container}>
+                        <button className={styles.save_plan} onClick={() => setOpenModalPlan(true)}>
+                            Сохранить план
+                        </button>
+                        <button className={styles.delete_btn} onClick={() => setOpenDeleteModal(true)}>
+                            Удалить план
+                        </button>
+                    </div>
                 </div>
             </div>
             {modalIsOpen && (
@@ -121,6 +132,11 @@ export const Constructor = () => {
                 <DeletePlanModal 
                     openModal={openDeleteModal}
                     closeModal={() => setOpenDeleteModal(false)}/>
+            )}
+            {openDeleteTaskModal && (
+                <DeleteTaskModal
+                    modalOpen={openDeleteTaskModal}
+                    closeModal={() => setOpenDeleteTaskModal(false)}/>
             )}
         </div>
     )
