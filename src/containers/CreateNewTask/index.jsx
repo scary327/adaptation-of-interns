@@ -106,14 +106,16 @@ export const CreateNewTask = (props) => {
         let newTask = {};
         const commonTaskData = {
             title: data.name,
-            description: data.description
+            description: data.description,
+            file: data.file
         };
     
         if (data.pattern) {
             const taskToSend = { ...commonTaskData, mentorId: userInfo.id, reusable: true };
             const receiveData = await createTask(`${server}/pattern/task`, taskToSend);
             newTask = formatTask(receiveData, true);
-        } else if (currentPage === "gantt") {
+        } 
+        if (currentPage === "gantt") {
             const taskToSend = {
                 ...commonTaskData,
                 internId: internId,
