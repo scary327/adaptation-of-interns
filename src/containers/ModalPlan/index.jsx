@@ -8,7 +8,8 @@ export const ModalPlan = (props) => {
 
     const { server, userInfo } = useContext(UserInfoContext);
     const { modalOpen, closeModal, tasksList, setTasksList, internId } = props;
-    const [planList, setPlanList] = useState([]);
+    const [planMentorList, setPlanMentorList] = useState([]);
+    const [ planAdminList, setPlanAdminList ] = useState([]);
     
     const formatDate = (date) => {
         const pad = (number) => (number < 10 ? '0' : '') + number;
@@ -24,18 +25,34 @@ export const ModalPlan = (props) => {
                     });
     
                     if (!response.ok) {
-                        throw new Error('HTTP error');
+                        throw new Error('Ошибка загрузки планов ментора');
                     }
     
                     const data = await response.json();
-                    setPlanList(data);
+                    setPlanMentorList(data);
                 } catch (error) {
                     console.error('Error fetching plans:', error);
                 }
-            }
-            fetchPlans();
+                try {
+                    const response = await fetch(`${server}/pattern/plan/Admin`, {
+                        method: 'GET',
+                        header: { 'Content-Type': 'application/json;charset=utf-8' },
+                    })
+
+                    if (!response.ok) {
+                        throw new Error('Ошибка загрузки общих планов');
+                    }
+                    const data = await response.json();
+                    setPlanAdminList(data);
+                } catch (error) {
+                    console.error('Error fetching plans:', error);
+                }
+        }
+        fetchPlans();
     }, []);
+
     const [ planDate, setPlanDate ] = useState('');
+
     const openPlan = async (id) => {
         try {
             fetch(`${server}/pattern/plan/assembled/${id}?internId=${internId}&StartDateInternship=${planDate}`, {
@@ -70,6 +87,9 @@ export const ModalPlan = (props) => {
         }
     }
 
+    const [ openMentorList, setOpenMentorList ] = useState(false);
+    const [ openAdminList, setOpenAdminList ] = useState(false);
+
     return (
         <Modal
             isOpen={modalOpen} 
@@ -87,12 +107,44 @@ export const ModalPlan = (props) => {
                     <p className={styles.title}>Выбор плана</p>
                     <input type='text' placeholder='поиск...' className={styles.modal_input} />
                     <div className={styles.date_container}>
-                        <InputDate min={ formatDate(new Date()) } onChange={setPlanDate} />
+                        <InputDate value={formatDate(new Date())} min={ formatDate(new Date()) } onChange={setPlanDate} />
                     </div>
-                    <div className={styles.list_container}>
-                        {planList.map((plan) => 
-                            <div key={plan.id} onClick={() => openPlan(plan.id)} className={styles.plan_div}>{plan.title}</div>
-                        )}
+                    { !openMentorList && !openAdminList && (
+                        <div className={styles.buttons_container}>
+                            <button
+                                className={styles.button_plan}
+                                onClick={() => setOpenMentorList(true)}>
+                                Мои планы
+                            </button>
+                            <button
+                                className={styles.button_plan}
+                                onClick={() => setOpenAdminList(true)}>
+                                Общие планы
+                            </button>
+                        </div>
+                    )}
+                    { openMentorList && (
+                        <div className={styles.pivo_container}>
+                            <div className={styles.list_container}>
+                                {planMentorList.map((plan) =>
+                                    <div key={plan.id} onClick={() => openPlan(plan.id)} className={styles.plan_div}>{plan.title}</div>
+                                )}
+                            </div>
+                            <button className={styles.back_button} onClick={() => setOpenMentorList(false)}>Назад</button>
+                        </div>
+                    )}
+                    { openAdminList && (
+                        <div className={styles.pivo_container}>
+                            <div className={styles.list_container}>
+                                {planAdminList.map((plan) =>
+                                    <div key={plan.id} onClick={() => openPlan(plan.id)} className={styles.plan_div}>{plan.title}</div>
+                                )}
+                            </div>
+                            <button className={styles.back_button} onClick={() => setOpenAdminList(false)}>Назад</button>
+                        </div>
+                    )}
+                    <div>
+
                     </div>
                 </div>
         </Modal>

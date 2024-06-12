@@ -123,3 +123,9 @@
         background-color: #bea722;
     }
 }
+
+.duo_buttons_container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}

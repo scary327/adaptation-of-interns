@@ -24,7 +24,7 @@ export const SelectReadyTask = (props) => {
                     }
     
                     const data = await response.json();
-                    setPatternTasksList(data.filter(task => task.reusable == true));
+                    setPatternTasksList(data.filter(task => task.reusable === true));
                 } catch (error) {
                     console.error('Error fetching users:', error);
                 }

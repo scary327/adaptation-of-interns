@@ -96,7 +96,11 @@ export const GantContainer = (props) => {
                 <img src={ImagePlus} alt='plus-img' 
                     className={styles.plus_img} />
             </button>
-            <button className={styles.upload_plan_button} onClick={() => setModalPlan(true)} >Загрузить план</button>
+            { userInfo.role !== 'Intern' && (
+                <button className={styles.upload_plan_button} onClick={() => setModalPlan(true)} >
+                    Загрузить план
+                </button>
+            ) }
             <button className={styles.update_button} onClick={() => saveChanges()}>
                 <span>Сохранить изменения</span>
                 <img src={ImageUpdate} alt="update-img" className={styles.update_svg} />

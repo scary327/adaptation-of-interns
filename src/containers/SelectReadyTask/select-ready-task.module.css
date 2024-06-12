@@ -21,6 +21,7 @@
     flex-direction: column;
     row-gap: 20px;
     padding: 20px 50px;
+    outline: none;
 }
 
 .modal_fixed_container {
