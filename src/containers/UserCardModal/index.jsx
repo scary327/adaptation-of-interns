@@ -13,7 +13,7 @@ export const UserCardModal = (props) => {
     const translatedRole = roleDictionary[cardUser.role];
 
     const [mentors, setMentors] = useState([]);
-
+    const [selectedMentor, setSelectedMentor] = useState('DEFAULT');
     const [internMentor, setInternMentor] = useState(null);
 
     const deleteUser = () => {
@@ -56,6 +56,7 @@ export const UserCardModal = (props) => {
 
                     data = await secondResponse.json();
                     setInternMentor(data[0]);
+                   
                 } catch (error) {
                     console.error('Error fetching users:', error);
                 }
@@ -65,18 +66,26 @@ export const UserCardModal = (props) => {
         fetchUsers();
     }, []);
     
+    useEffect(() => {
+        if (internMentor)
+            setSelectedMentor(internMentor.mentorId);
+    }, [internMentor]);
+
     const changeMentor = (value) => {
+        setSelectedMentor(value);
         const dataToSend = JSON.stringify({ mentorId: value , internId: cardUser.id});
         fetch(`${server}/internship/mentorIntern/intern/${cardUser.id}`, {
             method: 'DELETE',
-            headers: { 'Content-Type': 'application/json;charset=utf-8' },
-            body: dataToSend
+            headers: { 'Content-Type': 'application/json;charset=utf-8' }
+        }).then((responce) => {
+            if (responce.ok)
+                fetch(`${server}/internship/mentorIntern`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json;charset=utf-8' },
+                    body: dataToSend
+                });
         });
-        fetch(`${server}/internship/mentorIntern`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json;charset=utf-8' },
-            body: dataToSend
-        });
+       
     }
 
     return (
@@ -114,20 +123,17 @@ export const UserCardModal = (props) => {
                         <span className={styles.main_span}>{cardUser.telegram ? cardUser.telegram : 'Нет telegram'}</span>
                         <span className={styles.main_span}>{cardUser.vk ? cardUser.vk : 'Нет vk'}</span>
                         { cardUser.role === 'Intern' && userInfo.role === 'Admin' &&
-                            <select className={styles.custom_select} defaultValue={'DEFAULT'} onChange={(e) => changeMentor(e.target.value)}>
-                                {internMentor ? (
-                                    <option key={internMentor.id} value={internMentor.id}>
-                                        {internMentor.surname} {internMentor.name} {internMentor.middleName}
-                                    </option>
-                                ) : (
-                                    <option value='DEFAULT' disabled selected>Выбор наставника</option>
-                                )}
-                                {mentors.map((mentor) => ( mentor.id !== internMentor?.id &&
-                                    <option value={mentor.id} key={mentor.id}>
-                                        {mentor.surname} {mentor.name} {mentor.middleName}
-                                    </option>
-                                ))}
-                            </select>
+                         <select className={styles.custom_select} value={selectedMentor} onChange={(e) => changeMentor(e.target.value)}>
+                         <option value='DEFAULT'>
+                             Выбор наставника
+                         </option>
+                         {mentors.map((mentor) => (
+                             <option key={mentor.id} value={mentor.id}>
+                                 {mentor.surname} {mentor.name} {mentor.middleName}
+                             </option>
+                         ))}
+                        </select>
+                          
                         }
                     </div>
                     { cardUser.role === 'Intern' &&
