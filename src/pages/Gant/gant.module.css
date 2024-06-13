@@ -38,3 +38,9 @@
         color: #F5D82D;
     }
 }
+
+.over_top_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

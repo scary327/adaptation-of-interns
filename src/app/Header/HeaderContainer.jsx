@@ -75,7 +75,8 @@ export const HeaderContainer = () => {
         {
             id: 1,
             name: 'Гант',
-            icon: 'src/theme/images/constructor',
+            iconBlack: ConstructorBlackIcon,
+            iconOrange: ConstructorOrangeIcon,
             page: `gantt/${userInfo.id}`
         }
     ];

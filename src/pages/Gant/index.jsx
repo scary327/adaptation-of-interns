@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { HeaderContainer } from '../../app/Header/HeaderContainer';
 import { GantContainer } from '../../containers/GantContainer';
 import { FinishTasksContainer } from '../../containers/FinishTasksContainer';
+import {UserRightInfo} from "../../components/UserRightInfo/index.jsx";
 
 export const Gant = () => {
 
@@ -69,7 +70,10 @@ export const Gant = () => {
         <div className={styles.container}>
             <HeaderContainer />
             <div className={styles.main_container}>
-                <p className={styles.main_title}>Гант пользователя {intern?.name}</p>
+                <div className={styles.over_top_container}>
+                    <p className={styles.main_title}>Гант пользователя {intern?.name}</p>
+                    <UserRightInfo />
+                </div>
                 <div className={styles.top_container}>
                     <button className={styles.toggle_btn} onClick={() => setToggleView(false)}>
                         Диаграмма Ганта
