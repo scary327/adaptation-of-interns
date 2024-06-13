@@ -8,7 +8,7 @@ export const InputDate = (props) => {
         <input
             type='date'
             min={ min ? min : undefined }
-            value={ value ? value : undefined }
+            defaultValue={ value ? value : undefined }
             className={styles.input}
             onChange={(e) => onChange(e.target.value)} />
     )

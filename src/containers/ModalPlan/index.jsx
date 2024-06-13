@@ -8,7 +8,7 @@ export const ModalPlan = (props) => {
 
     const { server, userInfo } = useContext(UserInfoContext);
     const { modalOpen, closeModal, tasksList, setTasksList, internId } = props;
-    const [planMentorList, setPlanMentorList] = useState([]);
+    const [ planMentorList, setPlanMentorList ] = useState([]);
     const [ planAdminList, setPlanAdminList ] = useState([]);
     
     const formatDate = (date) => {
@@ -55,7 +55,7 @@ export const ModalPlan = (props) => {
 
     const openPlan = async (id) => {
         try {
-            fetch(`${server}/pattern/plan/assembled/${id}?internId=${internId}&StartDateInternship=${planDate}`, {
+            await fetch(`${server}/pattern/plan/assembled/${id}?internId=${internId}&StartDateInternship=${planDate ? planDate : formatDate(new Date())}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json;charset=utf-8' },
             }).then(async () => {
